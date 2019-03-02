@@ -3534,6 +3534,8 @@ squel.flavours['postgres'] = function (_squel) {
   cls.DefaultQueryBuilderOptions.numberedParametersStartAt = 1;
   cls.DefaultQueryBuilderOptions.autoQuoteAliasNames = false;
   cls.DefaultQueryBuilderOptions.useAsForTableAliasNames = true;
+  cls.DefaultQueryBuilderOptions.nameQuoteCharacter = '"';
+  cls.DefaultQueryBuilderOptions.tableAliasQuoteCharacter = '"';
 
   cls.PostgresOnConflictKeyUpdateBlock =
   /*#__PURE__*/

@@ -1,5 +1,9 @@
 # Changelog for [squel](https://github.com/hiddentao/squel)
 
+## 2 Mar 2019 (5.12.3)
+* Update all dependencies, fix all reported npm audit issues.
+* Use the double quote character to quote PostgreSQL names [KMahoney](https://github.com/KMahoney)
+
 ## 9 Jul 2018 (5.12.2)
 * Fix Node.js CVE (update growl dev dependency)
 
