@@ -39,7 +39,7 @@ test['Blocks'] =
       assert.instanceOf @inst, squel.cls.BaseBuilder
 
     'options': ->
-      expectedOptions = _.extend {}, squel.cls.DefaultQueryBuilderOptions,
+      expectedOptions = _.assign {}, squel.cls.DefaultQueryBuilderOptions,
         usingValuePlaceholders: true
         dummy: true
 
@@ -184,8 +184,8 @@ test['Blocks'] =
         assert.same expectedFroms, @inst._tables
 
       'sanitizes inputs': ->
-        sanitizeTableSpy = test.mocker.stub @cls.prototype, '_sanitizeTable', -> return '_t'
-        sanitizeAliasSpy = test.mocker.stub @cls.prototype, '_sanitizeTableAlias', -> return '_a'
+        sanitizeTableSpy = test.mocker.stub(@cls.prototype, '_sanitizeTable').callsFake -> return '_t'
+        sanitizeAliasSpy = test.mocker.stub(@cls.prototype, '_sanitizeTableAlias').callsFake -> return '_a'
 
         @inst._table('table', 'alias')
 
@@ -527,8 +527,8 @@ test['Blocks'] =
         assert.same expected, @inst._fields
 
       'sanitizes inputs': ->
-        sanitizeFieldSpy = test.mocker.stub @cls.prototype, '_sanitizeField', -> return '_f'
-        sanitizeAliasSpy = test.mocker.stub @cls.prototype, '_sanitizeFieldAlias', -> return '_a'
+        sanitizeFieldSpy = test.mocker.stub(@cls.prototype, '_sanitizeField').callsFake -> return '_f'
+        sanitizeAliasSpy = test.mocker.stub(@cls.prototype, '_sanitizeFieldAlias').callsFake -> return '_a'
 
         @inst.field('field1', 'alias1', { dummy: true})
 
@@ -606,8 +606,8 @@ test['Blocks'] =
         assert.same expectedFieldOptions, @inst._valueOptions
 
       'sanitizes inputs': ->
-        sanitizeFieldSpy = test.mocker.stub @cls.prototype, '_sanitizeField', -> '_f'
-        sanitizeValueSpy = test.mocker.stub @cls.prototype, '_sanitizeValue', -> '_v'
+        sanitizeFieldSpy = test.mocker.stub(@cls.prototype, '_sanitizeField').callsFake -> '_f'
+        sanitizeValueSpy = test.mocker.stub(@cls.prototype, '_sanitizeValue').callsFake -> '_v'
 
         @inst._set('field1', 'value1', dummy: true)
 
@@ -634,8 +634,8 @@ test['Blocks'] =
         assert.same expectedFieldOptions, @inst._valueOptions
 
       'sanitizes inputs': ->
-        sanitizeFieldSpy = test.mocker.stub @cls.prototype, '_sanitizeField', -> '_f'
-        sanitizeValueSpy = test.mocker.stub @cls.prototype, '_sanitizeValue', -> '_v'
+        sanitizeFieldSpy = test.mocker.stub(@cls.prototype, '_sanitizeField').callsFake -> '_f'
+        sanitizeValueSpy = test.mocker.stub(@cls.prototype, '_sanitizeValue').callsFake -> '_v'
 
         @inst._setFields({'field1': 'value1'}, {dummy: true})
 
@@ -669,8 +669,8 @@ test['Blocks'] =
         assert.same expectedFieldOptions, @inst._valueOptions
 
       'sanitizes inputs': ->
-        sanitizeFieldSpy = test.mocker.stub @cls.prototype, '_sanitizeField', -> return '_f'
-        sanitizeValueSpy = test.mocker.stub @cls.prototype, '_sanitizeValue', -> return '_v'
+        sanitizeFieldSpy = test.mocker.stub(@cls.prototype, '_sanitizeField').callsFake -> return '_f'
+        sanitizeValueSpy = test.mocker.stub(@cls.prototype, '_sanitizeValue').callsFake -> return '_v'
 
         @inst._setFieldsRows [
           {
@@ -810,7 +810,7 @@ test['Blocks'] =
 
     'fromQuery()':
       'sanitizes field names': ->
-        spy = test.mocker.stub @inst, '_sanitizeField', -> 1
+        spy = test.mocker.stub(@inst, '_sanitizeField').callsFake -> 1
 
         qry = squel.select()
 
@@ -822,7 +822,7 @@ test['Blocks'] =
         assert.ok spy.calledWithExactly 'two'
 
       'sanitizes query': ->
-        spy = test.mocker.stub @inst, '_sanitizeBaseBuilder', -> 1
+        spy = test.mocker.stub(@inst, '_sanitizeBaseBuilder').callsFake -> 1
 
         qry = 123
 
@@ -905,7 +905,7 @@ test['Blocks'] =
         assert.same ['field1', 'field2'], @inst._groups
 
       'sanitizes inputs': ->
-        sanitizeFieldSpy = test.mocker.stub @cls.prototype, '_sanitizeField', -> return '_f'
+        sanitizeFieldSpy = test.mocker.stub(@cls.prototype, '_sanitizeField').callsFake -> return '_f'
 
         @inst.group('field1')
 
@@ -945,7 +945,7 @@ test['Blocks'] =
         assert.same 22, @inst._value
 
       'sanitizes inputs': ->
-        sanitizeSpy = test.mocker.stub @cls.prototype, '_sanitizeLimitOffset', -> return 234
+        sanitizeSpy = test.mocker.stub(@cls.prototype, '_sanitizeLimitOffset').callsFake -> return 234
 
         @inst._setValue(23)
 
@@ -1063,7 +1063,7 @@ test['Blocks'] =
 
       class squel.cls.MockConditionBlock extends squel.cls.AbstractConditionBlock
         constructor: (options) ->
-          super _.extend({}, options, {verb: 'MOCKVERB'})
+          super _.assign({}, options, {verb: 'MOCKVERB'})
 
         mockCondition: (condition, values...) ->
           @_condition condition, values...
@@ -1099,7 +1099,7 @@ test['Blocks'] =
         ], @inst._conditions
 
       'sanitizes inputs': ->
-        sanitizeFieldSpy = test.mocker.stub @cls.prototype, '_sanitizeExpression', -> return '_c'
+        sanitizeFieldSpy = test.mocker.stub(@cls.prototype, '_sanitizeExpression').callsFake -> return '_c'
 
         @inst._condition('a = 1')
 
@@ -1284,7 +1284,7 @@ test['Blocks'] =
         assert.same @inst._orders, expected
 
       'sanitizes inputs': ->
-        sanitizeFieldSpy = test.mocker.stub @cls.prototype, '_sanitizeField', -> return '_f'
+        sanitizeFieldSpy = test.mocker.stub(@cls.prototype, '_sanitizeField').callsFake -> return '_f'
 
         @inst.order('field1')
 
@@ -1375,9 +1375,9 @@ test['Blocks'] =
         assert.same @inst._joins, expected
 
       'sanitizes inputs': ->
-        sanitizeTableSpy = test.mocker.stub @cls.prototype, '_sanitizeTable', -> return '_t'
-        sanitizeAliasSpy = test.mocker.stub @cls.prototype, '_sanitizeTableAlias', -> return '_a'
-        sanitizeConditionSpy = test.mocker.stub @cls.prototype, '_sanitizeExpression', -> return '_c'
+        sanitizeTableSpy = test.mocker.stub(@cls.prototype, '_sanitizeTable').callsFake -> return '_t'
+        sanitizeAliasSpy = test.mocker.stub(@cls.prototype, '_sanitizeTableAlias').callsFake -> return '_a'
+        sanitizeConditionSpy = test.mocker.stub(@cls.prototype, '_sanitizeExpression').callsFake -> return '_c'
 
         @inst.join('table1', 'alias1', 'a = 1')
 

@@ -44,7 +44,7 @@ test['DELETE builder'] =
         usingValuePlaceholders: true
         dummy: true
 
-      expectedOptions = _.extend {}, squel.cls.DefaultQueryBuilderOptions,
+      expectedOptions = _.assign {}, squel.cls.DefaultQueryBuilderOptions,
         usingValuePlaceholders: true
         dummy: true
 

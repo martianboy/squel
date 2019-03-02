@@ -3,14 +3,12 @@ require('coffee-script/register');
 const gulp = require('gulp'),
   istanbul = require('gulp-istanbul'),
   umd = require('gulp-umd'),
-  path = require('path'),
   concat = require('gulp-concat'),
   insert = require('gulp-insert'),
   mocha = require('gulp-mocha'),
   babel = require('gulp-babel'),
   replace = require('gulp-replace'),
   uglify = require('gulp-uglify'),
-  runSequence = require('run-sequence'),
   argv = require('yargs').argv;
 
 
@@ -28,7 +26,7 @@ gulp.task('build-basic', function() {
     .pipe( concat('squel-basic.js') )
     .pipe( replace(/<<VERSION_STRING>>/i, SQUEL_VERSION) )
     .pipe( babel({
-      presets: ['env']
+      presets: ['@babel/preset-env']
     }) )
     .pipe( umd({
       exports: function (file) {
@@ -56,7 +54,7 @@ gulp.task('build-full', function() {
     .pipe( concat('squel.js') )
     .pipe( replace(/<<VERSION_STRING>>/i, SQUEL_VERSION) )
     .pipe( babel({
-      presets: ['env']
+      presets: ['@babel/preset-env']
     }) )
     .pipe( umd({
       exports: function (file) {
@@ -74,7 +72,7 @@ gulp.task('build-full', function() {
 });
 
 
-gulp.task('build', ['build-basic', 'build-full']);
+gulp.task('build', gulp.series('build-basic', 'build-full'));
 
 
 gulp.task('pre-test', function () {
@@ -84,7 +82,7 @@ gulp.task('pre-test', function () {
 });
 
 
-gulp.task('test', ['pre-test'], function () {
+gulp.task('test', gulp.series('pre-test', function () {
   return gulp.src(onlyTest || [
       './test/baseclasses.test.coffee',
       './test/blocks.test.coffee',
@@ -102,16 +100,13 @@ gulp.task('test', ['pre-test'], function () {
       .pipe(mocha({
         ui: 'exports',
         reporter: 'spec',
+        require: ['coffee-script/register']
       }))
       .pipe(istanbul.writeReports({
         dir: './test-coverage',
       }))
       // .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }))
     ;
-});
+}));
 
-
-
-gulp.task('default', function(cb) {
-  runSequence(['build'], 'test', cb);
-});
+gulp.task('default', gulp.series('build', 'test'));

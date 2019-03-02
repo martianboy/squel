@@ -40,6 +40,8 @@ test['Cloneable base class'] =
 
     class Child extends squel.cls.Cloneable
       constructor: ->
+        super()
+
         @a = 1
         @b = 2.2
         @c = true
@@ -257,7 +259,7 @@ test['Builder base class'] =
         dummy3: true,
         globalValueHandlers: [1]
 
-      expectedOptions = _.extend {}, squel.cls.DefaultQueryBuilderOptions,
+      expectedOptions = _.assign {}, squel.cls.DefaultQueryBuilderOptions,
         dummy1: 'str'
         dummy2: 12.3
         usingValuePlaceholders: true
@@ -657,7 +659,7 @@ test['Builder base class'] =
       assert.same s, @inst._formatValueForParamArray(s)
 
     'else calls _formatCustomValue': ->
-      spy = test.mocker.stub @inst, '_formatCustomValue', (v, asParam) ->
+      spy = test.mocker.stub(@inst, '_formatCustomValue').callsFake (v, asParam) ->
         { formatted: true, value: 'test' + (if asParam then 'foo' else 'bar') }
 
       assert.same 'testfoo', @inst._formatValueForParamArray(null)
@@ -713,7 +715,7 @@ test['Builder base class'] =
 
       'default': ->
         escapedValue = undefined
-        test.mocker.stub @inst, '_escapeValue', (str) -> escapedValue or str
+        test.mocker.stub(@inst, '_escapeValue').callsFake (str) -> escapedValue or str
 
         assert.same "'test'", @inst._formatValueForQueryString('test')
 
@@ -723,7 +725,7 @@ test['Builder base class'] =
 
       'dont quote': ->
         escapedValue = undefined
-        test.mocker.stub @inst, '_escapeValue', (str) -> escapedValue or str
+        test.mocker.stub(@inst, '_escapeValue').callsFake (str) -> escapedValue or str
 
         assert.same "test", @inst._formatValueForQueryString('test', dontQuote: true )
 
@@ -743,20 +745,20 @@ test['Builder base class'] =
       assert.ok spy.calledWith null
 
     'BaseBuilder': ->
-      spy = test.mocker.stub @inst, '_applyNestingFormatting', (v) => "{{#{v}}}"
+      spy = test.mocker.stub(@inst, '_applyNestingFormatting').callsFake (v) => "{{#{v}}}"
       s = squel.select().from('table')
       assert.same '{{SELECT * FROM table}}', @inst._formatValueForQueryString(s)
 
     'checks to see if it is custom value type first': ->
-      test.mocker.stub @inst, '_formatCustomValue', (val, asParam) ->
+      test.mocker.stub(@inst, '_formatCustomValue').callsFake (val, asParam) ->
         { formatted: true, value: 12 + (if asParam then 25 else 65) }
-      test.mocker.stub @inst, '_applyNestingFormatting', (v) -> "{#{v}}"
+      test.mocker.stub(@inst, '_applyNestingFormatting').callsFake (v) -> "{#{v}}"
       assert.same '{77}', @inst._formatValueForQueryString(123)
 
     '#292 - custom value type specifies raw nesting': ->
-      test.mocker.stub @inst, '_formatCustomValue', (val, asParam) ->
+      test.mocker.stub(@inst, '_formatCustomValue').callsFake (val, asParam) ->
         { rawNesting: true, formatted: true, value: 12 }
-      test.mocker.stub @inst, '_applyNestingFormatting', (v) -> "{#{v}}"
+      test.mocker.stub(@inst, '_applyNestingFormatting').callsFake (v) -> "{#{v}}"
       assert.same 12, @inst._formatValueForQueryString(123)
 
 
@@ -927,7 +929,7 @@ test['Builder base class'] =
         }
 
   'toParam': ->
-    spy = test.mocker.stub @inst, '_toParamString', ->
+    spy = test.mocker.stub(@inst, '_toParamString').callsFake ->
       {
         text: 'dummy'
         values: [1]
@@ -944,7 +946,7 @@ test['Builder base class'] =
     assert.same spy.getCall(0).args[0].buildParameterized, true
 
   'toString': ->
-    spy = test.mocker.stub @inst, '_toParamString', ->
+    spy = test.mocker.stub(@inst, '_toParamString').callsFake ->
       {
         text: 'dummy'
         values: [1]
@@ -976,7 +978,7 @@ test['QueryBuilder base class'] =
         usingValuePlaceholders: true
         dummy3: true
 
-      expectedOptions = _.extend {}, squel.cls.DefaultQueryBuilderOptions,
+      expectedOptions = _.assign {}, squel.cls.DefaultQueryBuilderOptions,
         dummy1: 'str'
         dummy2: 12.3
         usingValuePlaceholders: true
@@ -1031,12 +1033,12 @@ test['QueryBuilder base class'] =
 
   'updateOptions()':
     'updates query builder options': ->
-      oldOptions = _.extend({}, @inst.options)
+      oldOptions = _.assign({}, @inst.options)
 
       @inst.updateOptions
         updated: false
 
-      expected = _.extend oldOptions,
+      expected = _.assign oldOptions,
         updated: false
 
       assert.same expected, @inst.options
@@ -1045,12 +1047,12 @@ test['QueryBuilder base class'] =
       @inst.blocks = [
         new squel.cls.Block()
       ]
-      oldOptions = _.extend({}, @inst.blocks[0].options)
+      oldOptions = _.assign({}, @inst.blocks[0].options)
 
       @inst.updateOptions
         updated: false
 
-      expected = _.extend oldOptions,
+      expected = _.assign oldOptions,
         updated: false
 
       assert.same expected, @inst.blocks[0].options
@@ -1070,7 +1072,7 @@ test['QueryBuilder base class'] =
 
     'returns final query string': ->
       i = 1
-      toStringSpy = test.mocker.stub squel.cls.StringBlock.prototype, '_toParamString', ->
+      toStringSpy = test.mocker.stub(squel.cls.StringBlock.prototype, '_toParamString').callsFake ->
         {
           text: "ret#{++i}"
           values: []
@@ -1109,7 +1111,7 @@ test['QueryBuilder base class'] =
       ]
 
       i = 1
-      toStringSpy = test.mocker.stub squel.cls.StringBlock.prototype, '_toParamString', ->
+      toStringSpy = test.mocker.stub(squel.cls.StringBlock.prototype, '_toParamString').callsFake ->
         {
           text: "ret#{++i}"
           values: []
@@ -1142,7 +1144,7 @@ test['QueryBuilder base class'] =
         new squel.cls.WhereBlock({}),
       ]
 
-      test.mocker.stub squel.cls.WhereBlock.prototype, '_toParamString', -> {
+      test.mocker.stub(squel.cls.WhereBlock.prototype, '_toParamString').callsFake -> {
         text: 'a = ? AND b in (?, ?)', values: [1, 2, 3]
       }
 
@@ -1157,7 +1159,7 @@ test['QueryBuilder base class'] =
         new squel.cls.WhereBlock({}),
       ]
 
-      test.mocker.stub squel.cls.WhereBlock.prototype, '_toParamString', -> {
+      test.mocker.stub(squel.cls.WhereBlock.prototype, '_toParamString').callsFake -> {
         text: 'a = ? AND b in (?, ?)', values: [1, 2, 3]
       }
 

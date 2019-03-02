@@ -26,10 +26,12 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 sinon = require('sinon')
 chai = require("chai")
+sinonChai = require("sinon-chai")
 
 assert = chai.assert
 expect = chai.expect
 should = chai.should()
+chai.use(sinonChai)
 
 
 ###
@@ -49,7 +51,7 @@ testCreator = ->
   test =
     mocker: null
     beforeEach: ->
-      test.mocker = sinon.sandbox.create()
+      test.mocker = sinon.createSandbox()
     afterEach: ->
       test.mocker.restore()
 
@@ -57,7 +59,7 @@ testCreator = ->
 
 
 module?.exports =
-  _: require('underscore')
+  _: require('lodash')
   testCreator: testCreator
   assert: assert
   expect: expect

@@ -48,7 +48,7 @@ test['Expression builder base class'] =
         separator: ',asdf'
       })
 
-      expected = _.extend({}, squel.cls.DefaultQueryBuilderOptions, {
+      expected = _.assign({}, squel.cls.DefaultQueryBuilderOptions, {
         separator: ',asdf'
       })
 

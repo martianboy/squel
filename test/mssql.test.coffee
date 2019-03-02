@@ -111,8 +111,8 @@ test['MSSQL flavour'] =
 
     '>> table(table).set(field, 1).outputs(id AS ident, name AS naming)':
       beforeEach: -> @upt.table('table').outputs(
-      	id: 'ident'
-      	name: 'naming'
+        id: 'ident'
+        name: 'naming'
       ).set('field', 1)
       toString: ->
         assert.same @upt.toString(), 'UPDATE table SET field = 1 OUTPUT INSERTED.id AS ident, INSERTED.name AS naming'
