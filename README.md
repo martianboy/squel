@@ -1,9 +1,7 @@
 # squel - SQL query string builder
 
 [![Build Status](https://secure.travis-ci.org/martianboy/squel.svg?branch=master)](http://travis-ci.org/martianboy/squel)
-[![CDNJS](https://img.shields.io/cdnjs/v/squel.svg)](https://cdnjs.com/libraries/squel)
-[![NPM module](https://badge.fury.io/js/squel.svg)](https://badge.fury.io/js/squel)
-[![NPM downloads](https://img.shields.io/npm/dm/squel.svg?maxAge=2592000)](https://www.npmjs.com/package/squel)
+[![NPM Version](https://badge.fury.io/js/%40rechat%2Fsquel.svg)](https://badge.fury.io/js/%40rechat%2Fsquel)
 [![Join the chat at https://discord.gg/PBAR2Bz](https://img.shields.io/badge/discord-join%20chat-738bd7.svg)](https://discord.gg/PBAR2Bz)
 [![Follow on Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow&maxAge=2592000)](https://twitter.com/hiddentao)
 
