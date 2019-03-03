@@ -2932,7 +2932,7 @@ function _buildSquel() {
   }(cls.QueryBuilder);
 
   var _squel = {
-    VERSION: '5.13.0',
+    VERSION: '5.13.1',
     flavour: flavour,
     expr: function expr(options) {
       return new cls.Expression(options);
