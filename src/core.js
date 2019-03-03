@@ -1870,41 +1870,64 @@ function _buildSquel(flavour = null) {
   }
 
 
-  // UNION
-  cls.UnionBlock = class extends cls.Block {
+  cls.SetOpBlock = class extends cls.Block {
     constructor (options) {
       super(options);
 
-      this._unions = [];
+      this._sets = [];
     }
 
     /**
-    # Add a UNION with the given table/query.
-    #
-    # 'table' is the name of the table or query to union with.
-    #
-    # 'type' must be either one of UNION or UNION ALL.... Default is 'UNION'.
-    */
-    union (table, type = 'UNION') {
+     * Add a UNION with the given table/query.
+     *
+     * 'table' is the name of the table or query to combine with.
+     *
+     * 'type' of the set operation
+     */
+    _add (table, type) {
       table = this._sanitizeTable(table);
 
-      this._unions.push({
+      this._sets.push({
         type: type,
         table: table,
       });
     }
 
-    // Add a UNION ALL with the given table/query.
-    union_all (table) {
-      this.union(table, 'UNION ALL');
+    // Add a UNION with the given table/query.
+    union (table) {
+      this._add(table, 'UNION');
     }
 
+    // Add a UNION ALL with the given table/query.
+    union_all (table) {
+      this._add(table, 'UNION ALL');
+    }
+
+    // Add a INTERSECT with the given table/query.
+    intersect (table) {
+      this._add(table, 'INTERSECT');
+    }
+
+    // Add a INTERSECT ALL with the given table/query.
+    intersect_all (table) {
+      this._add(table, 'INTERSECT ALL');
+    }
+
+    // Add a EXCEPT with the given table/query.
+    except (table) {
+      this._add(table, 'EXCEPT');
+    }
+
+    // Add a EXCEPT ALL with the given table/query.
+    except_all (table) {
+      this._add(table, 'EXCEPT ALL');
+    }
 
     _toParamString (options = {}) {
       let totalStr = '',
         totalValues = [];
 
-      for (let {type, table} of this._unions) {
+      for (let {type, table} of this._sets) {
         totalStr = _pad(totalStr, this.options.separator);
 
         let tableStr;
@@ -1930,7 +1953,6 @@ function _buildSquel(flavour = null) {
       };
     }
   }
-
 
   /*
   # ---------------------------------------------------------------------------------------------------------
@@ -2089,7 +2111,7 @@ function _buildSquel(flavour = null) {
         new cls.OrderByBlock(options),
         new cls.LimitBlock(options),
         new cls.OffsetBlock(options),
-        new cls.UnionBlock(options),
+        new cls.SetOpBlock(options),
       ];
 
       super(options, blocks);

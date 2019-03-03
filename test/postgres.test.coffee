@@ -247,6 +247,19 @@ test['Postgres flavour'] =
             "values": [2, 1]
           }
 
+      '>> query1.withValues(alias, values)':
+        beforeEach: ->
+          values = [{ field1: 1, field2: 'text1' }, { field1: 2, field2: 'text2' }]
+          @sel.from('table1').where('field1 = ?', 1)
+          @sel.withValues('someAlias', values)
+        toString: ->
+          assert.same @sel.toString(), 'WITH someAlias(field1, field2) AS ( VALUES (1, \'text1\'), (2, \'text2\') ) SELECT * FROM table1 WHERE (field1 = 1)'
+        toParam: ->
+          assert.same @sel.toParam(), {
+            "text": 'WITH someAlias(field1, field2) AS ( VALUES ($1, $2), ($3, $4) ) SELECT * FROM table1 WHERE (field1 = $5)'
+            "values": [1, 'text1', 2, 'text2', 1]
+          }
+
       '>> query1.with(alias1, query2).with(alias2, query2)':
         beforeEach: ->
           @sel.from('table1').where('field1 = ?', 1)
@@ -293,6 +306,70 @@ test['Postgres flavour'] =
         toParam: ->
           assert.same @sel.toParam(), {
             "text": 'SELECT field1 FROM table1 WHERE (field1 = $1) UNION ALL (SELECT field1 FROM table1 WHERE (field1 < $2))'
+            "values": [
+              3
+              10
+            ]
+          }
+
+      '>> query1.intersect(query2)':
+        beforeEach: ->
+          @sel.field('field1').from('table1').where('field1 = ?', 3)
+          @sel2.field('field1').from('table1').where('field1 < ?', 10)
+          @sel.intersect(@sel2)
+        toString: ->
+          assert.same @sel.toString(), 'SELECT field1 FROM table1 WHERE (field1 = 3) INTERSECT (SELECT field1 FROM table1 WHERE (field1 < 10))'
+        toParam: ->
+          assert.same @sel.toParam(), {
+            "text": 'SELECT field1 FROM table1 WHERE (field1 = $1) INTERSECT (SELECT field1 FROM table1 WHERE (field1 < $2))'
+            "values": [
+              3
+              10
+            ]
+          }
+
+      '>> query1.intersect_all(query2)':
+        beforeEach: ->
+          @sel.field('field1').from('table1').where('field1 = ?', 3)
+          @sel2.field('field1').from('table1').where('field1 < ?', 10)
+          @sel.intersect_all(@sel2)
+        toString: ->
+          assert.same @sel.toString(), 'SELECT field1 FROM table1 WHERE (field1 = 3) INTERSECT ALL (SELECT field1 FROM table1 WHERE (field1 < 10))'
+        toParam: ->
+          assert.same @sel.toParam(), {
+            "text": 'SELECT field1 FROM table1 WHERE (field1 = $1) INTERSECT ALL (SELECT field1 FROM table1 WHERE (field1 < $2))'
+            "values": [
+              3
+              10
+            ]
+          }
+
+      '>> query1.except(query2)':
+        beforeEach: ->
+          @sel.field('field1').from('table1').where('field1 = ?', 3)
+          @sel2.field('field1').from('table1').where('field1 < ?', 10)
+          @sel.except(@sel2)
+        toString: ->
+          assert.same @sel.toString(), 'SELECT field1 FROM table1 WHERE (field1 = 3) EXCEPT (SELECT field1 FROM table1 WHERE (field1 < 10))'
+        toParam: ->
+          assert.same @sel.toParam(), {
+            "text": 'SELECT field1 FROM table1 WHERE (field1 = $1) EXCEPT (SELECT field1 FROM table1 WHERE (field1 < $2))'
+            "values": [
+              3
+              10
+            ]
+          }
+
+      '>> query1.except_all(query2)':
+        beforeEach: ->
+          @sel.field('field1').from('table1').where('field1 = ?', 3)
+          @sel2.field('field1').from('table1').where('field1 < ?', 10)
+          @sel.except_all(@sel2)
+        toString: ->
+          assert.same @sel.toString(), 'SELECT field1 FROM table1 WHERE (field1 = 3) EXCEPT ALL (SELECT field1 FROM table1 WHERE (field1 < 10))'
+        toParam: ->
+          assert.same @sel.toParam(), {
+            "text": 'SELECT field1 FROM table1 WHERE (field1 = $1) EXCEPT ALL (SELECT field1 FROM table1 WHERE (field1 < $2))'
             "values": [
               3
               10

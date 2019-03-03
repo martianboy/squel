@@ -11,7 +11,7 @@ squel.flavours['mssql'] = function(_squel) {
   });
 
 
-  // LIMIT,  OFFSET x and TOP x
+  //ï¿½LIMIT,  OFFSET x and TOP x
   cls.MssqlLimitOffsetTopBlock = class extends cls.Block {
     constructor (options) {
       super(options);
@@ -246,7 +246,7 @@ squel.flavours['mssql'] = function(_squel) {
         new cls.OrderByBlock(options),
         limitOffsetTopBlock.OFFSET(),
         limitOffsetTopBlock.LIMIT(),
-        new cls.UnionBlock(options),
+        new cls.SetOpBlock(options),
       ];
 
       super(options, blocks);

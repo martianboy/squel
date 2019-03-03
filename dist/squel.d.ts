@@ -948,30 +948,55 @@ declare namespace squel {
     cross_join(name: string | BaseBuilder, alias?: string, condition?: string | Expression): this;
   }
 
-  interface Union {
+  interface SetOperation {
     type: string;
     table: QueryBuilder;
   }
 
-  interface UnionBlock extends Block {
-    _unions: Union[];
+  interface SetOpBlock extends Block {
+    _sets: SetOperation[];
+
+    /**
+     * Add an op with the given table/query.
+     *
+     * 'table' is the name of the table or query to combine with.
+     *
+     * 'type' of the set operation
+     */
+    add(table: QueryBuilder, type?: "UNION" | "UNION ALL" | "INTERSECT" | "INTERSECT ALL" | "EXCEPT" | "EXCEPT ALL"): void;
 
     /**
      * Add a UNION with the given table/query.
-     *
-     * 'table' is the name of the table or query to union with.
-     *
-     * 'type' must be either one of UNION or UNION ALL.... Default is 'UNION'.
      */
-    union(table: QueryBuilder, type?: "UNION" | "UNION ALL"): void;
+    union(table: QueryBuilder): void;
 
     /**
      * Add a UNION ALL with the given table/query.
      */
     union_all(table: QueryBuilder): void;
+
+    /**
+     * Add an INTERSECT with the given table/query.
+     */
+    intersect(table: QueryBuilder): void;
+
+    /**
+     * Add an INTERSECT ALL with the given table/query.
+     */
+    intersect_all(table: QueryBuilder): void;
+
+    /**
+     * Add an EXCEPT with the given table/query.
+     */
+    except(table: QueryBuilder): void;
+
+    /**
+     * Add an EXCEPT ALL with the given table/query.
+     */
+    except_all(table: QueryBuilder): void;
   }
 
-  interface UnionMixin {
+  interface SetOpMixin {
     /**
      * Combine with another `SELECT` using `UNION`.
      *
@@ -985,6 +1010,34 @@ declare namespace squel {
      * @param query Another `SELECT` query to combine this query with.
      */
     union_all(query: QueryBuilder): this;
+
+    /**
+     * Combine with another `SELECT` using `INTERSECT`.
+     *
+     * @param query Another `SELECT` query to combine this query with.
+     */
+    intersect(query: QueryBuilder): this;
+
+    /**
+     * Combine with another `SELECT` using `INTERSECT ALL`.
+     *
+     * @param query Another `SELECT` query to combine this query with.
+     */
+    intersect_all(query: QueryBuilder): this;
+
+    /**
+     * Combine with another `SELECT` using `EXCEPT`.
+     *
+     * @param query Another `SELECT` query to combine this query with.
+     */
+    except(query: QueryBuilder): this;
+
+    /**
+     * Combine with another `SELECT` using `EXCEPT ALL`.
+     *
+     * @param query Another `SELECT` query to combine this query with.
+     */
+    except_all(query: QueryBuilder): this;
   }
 
   /* tslint:disable:member-ordering */
@@ -1044,7 +1097,7 @@ declare namespace squel {
     HavingBlock: {new(options?: ConditionBlockOptions): HavingBlock};
     OrderByBlock: BuilderConstructor<OrderByBlock>;
     JoinBlock: BuilderConstructor<JoinBlock>;
-    UnionBlock: BuilderConstructor<UnionBlock>;
+    SetOpBlock: BuilderConstructor<SetOpBlock>;
 
     QueryBuilder: {
       new(options?: QueryBuilderOptions): QueryBuilder;
@@ -1107,7 +1160,7 @@ declare namespace squel {
     OrderByMixin,
     LimitMixin,
     OffsetMixin,
-    UnionMixin {
+    SetOpMixin {
   }
 
   /**
@@ -1650,6 +1703,12 @@ declare namespace squel {
     with(alias: string, table: QueryBuilder): void;
   }
 
+  interface WithValuesBlock extends AbstractSetFieldBlock {
+    _alias: string;
+
+    withValues<T extends {[field: string]: any}>(alias: string, values: T[]): void;
+  }
+
   interface WithMixin {
     /**
      * Combine with another query using a Common Table Expression (CTE), ie a `WITH` clause
@@ -1658,6 +1717,16 @@ declare namespace squel {
      * @param table Another query to include as a Common Table Expression
      */
     with(alias: string, table: QueryBuilder): this;
+  }
+
+  interface WithValuesMixin {
+    /**
+     * Combine with another query using a Common Table Expression (CTE), ie a `WITH` clause
+     *
+     * @param alias The alias that the table expression should use
+     * @param values Set of values
+     */
+    withValues<T extends {[field: string]: any}>(alias: string, values: T[]): void;
   }
 
   interface DistinctOnBlock extends Block {
@@ -1703,6 +1772,7 @@ declare namespace squel {
 
   interface PostgresSelect extends Select,
     WithMixin,
+    WithValuesMixin,
     DistinctOnMixin {
     /**
      * Insert the DISTINCT keyword.
@@ -1727,6 +1797,7 @@ declare namespace squel {
    */
   interface PostgresUpdate extends Update,
     WithMixin,
+    WithValuesMixin,
     ReturningMixin,
     FromTableMixin {
   }

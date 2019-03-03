@@ -2506,10 +2506,9 @@ function _buildSquel() {
     }]);
 
     return _class27;
-  }(cls.Block); // UNION
+  }(cls.Block);
 
-
-  cls.UnionBlock =
+  cls.SetOpBlock =
   /*#__PURE__*/
   function (_cls$Block13) {
     _inherits(_class28, _cls$Block13);
@@ -2520,34 +2519,63 @@ function _buildSquel() {
       _classCallCheck(this, _class28);
 
       _this19 = _possibleConstructorReturn(this, _getPrototypeOf(_class28).call(this, options));
-      _this19._unions = [];
+      _this19._sets = [];
       return _this19;
     }
     /**
-    # Add a UNION with the given table/query.
-    #
-    # 'table' is the name of the table or query to union with.
-    #
-    # 'type' must be either one of UNION or UNION ALL.... Default is 'UNION'.
-    */
+     * Add a UNION with the given table/query.
+     *
+     * 'table' is the name of the table or query to combine with.
+     *
+     * 'type' of the set operation
+     */
 
 
     _createClass(_class28, [{
-      key: "union",
-      value: function union(table) {
-        var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'UNION';
+      key: "_add",
+      value: function _add(table, type) {
         table = this._sanitizeTable(table);
 
-        this._unions.push({
+        this._sets.push({
           type: type,
           table: table
         });
+      } // Add a UNION with the given table/query.
+
+    }, {
+      key: "union",
+      value: function union(table) {
+        this._add(table, 'UNION');
       } // Add a UNION ALL with the given table/query.
 
     }, {
       key: "union_all",
       value: function union_all(table) {
-        this.union(table, 'UNION ALL');
+        this._add(table, 'UNION ALL');
+      } // Add a INTERSECT with the given table/query.
+
+    }, {
+      key: "intersect",
+      value: function intersect(table) {
+        this._add(table, 'INTERSECT');
+      } // Add a INTERSECT ALL with the given table/query.
+
+    }, {
+      key: "intersect_all",
+      value: function intersect_all(table) {
+        this._add(table, 'INTERSECT ALL');
+      } // Add a EXCEPT with the given table/query.
+
+    }, {
+      key: "except",
+      value: function except(table) {
+        this._add(table, 'EXCEPT');
+      } // Add a EXCEPT ALL with the given table/query.
+
+    }, {
+      key: "except_all",
+      value: function except_all(table) {
+        this._add(table, 'EXCEPT ALL');
       }
     }, {
       key: "_toParamString",
@@ -2560,7 +2588,7 @@ function _buildSquel() {
         var _iteratorError10 = undefined;
 
         try {
-          for (var _iterator10 = this._unions[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+          for (var _iterator10 = this._sets[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
             var _step10$value = _step10.value,
                 type = _step10$value.type,
                 table = _step10$value.table;
@@ -2840,7 +2868,7 @@ function _buildSquel() {
 
       _classCallCheck(this, _class30);
 
-      blocks = blocks || [new cls.StringBlock(options, 'SELECT'), new cls.FunctionBlock(options), new cls.DistinctBlock(options), new cls.GetFieldBlock(options), new cls.FromTableBlock(options), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.GroupByBlock(options), new cls.HavingBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options), new cls.OffsetBlock(options), new cls.UnionBlock(options)];
+      blocks = blocks || [new cls.StringBlock(options, 'SELECT'), new cls.FunctionBlock(options), new cls.DistinctBlock(options), new cls.GetFieldBlock(options), new cls.FromTableBlock(options), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.GroupByBlock(options), new cls.HavingBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options), new cls.OffsetBlock(options), new cls.SetOpBlock(options)];
       return _possibleConstructorReturn(this, _getPrototypeOf(_class30).call(this, options, blocks));
     }
 
