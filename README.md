@@ -3,7 +3,7 @@
 [![Build Status](https://secure.travis-ci.org/martianboy/squel.svg?branch=master)](http://travis-ci.org/martianboy/squel)
 [![NPM Version](https://badge.fury.io/js/%40rechat%2Fsquel.svg)](https://badge.fury.io/js/%40rechat%2Fsquel)
 [![Join the chat at https://discord.gg/PBAR2Bz](https://img.shields.io/badge/discord-join%20chat-738bd7.svg)](https://discord.gg/PBAR2Bz)
-[![Follow on Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow&maxAge=2592000)](https://twitter.com/hiddentao)
+[![Follow on Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow&maxAge=2592000)](https://twitter.com/hiddentao) [![Greenkeeper badge](https://badges.greenkeeper.io/martianboy/squel.svg)](https://greenkeeper.io/)
 
 A flexible and powerful SQL query string builder for Javascript.
 
