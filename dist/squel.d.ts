@@ -1726,7 +1726,7 @@ declare namespace squel {
      * @param alias The alias that the table expression should use
      * @param values Set of values
      */
-    withValues<T extends {[field: string]: any}>(alias: string, values: T[]): void;
+    withValues<T extends {[field: string]: any}>(alias: string, values: T[]): this;
   }
 
   interface DistinctOnBlock extends Block {
