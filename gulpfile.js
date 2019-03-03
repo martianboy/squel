@@ -1,25 +1,16 @@
 require('coffee-script/register');
 
 const gulp = require('gulp'),
-  istanbul = require('gulp-istanbul'),
   umd = require('gulp-umd'),
   concat = require('gulp-concat'),
   insert = require('gulp-insert'),
-  mocha = require('gulp-mocha'),
   babel = require('gulp-babel'),
   replace = require('gulp-replace'),
-  uglify = require('gulp-uglify'),
-  argv = require('yargs').argv;
-
-
-const onlyTest = argv.onlyTest || argv.limitTest;
-
+  uglify = require('gulp-uglify');
 
 const SQUEL_VERSION = require('./package.json').version;
 
-
 gulp.task('build-basic', function() {
-
   return gulp.src([
       './src/core.js',
     ])
@@ -74,39 +65,4 @@ gulp.task('build-full', function() {
 
 gulp.task('build', gulp.series('build-basic', 'build-full'));
 
-
-gulp.task('pre-test', function () {
-  return gulp.src(['dist/*.js'])
-    .pipe(istanbul())
-    .pipe(istanbul.hookRequire());
-});
-
-
-gulp.task('test', gulp.series('pre-test', function () {
-  return gulp.src(onlyTest || [
-      './test/baseclasses.test.coffee',
-      './test/blocks.test.coffee',
-      './test/case.test.coffee',
-      './test/custom.test.coffee',
-      './test/delete.test.coffee',
-      './test/expressions.test.coffee',
-      './test/insert.test.coffee',
-      './test/select.test.coffee',
-      './test/update.test.coffee',
-      './test/mssql.test.coffee',
-      './test/mysql.test.coffee',
-      './test/postgres.test.coffee',
-    ], { read: false })
-      .pipe(mocha({
-        ui: 'exports',
-        reporter: 'spec',
-        require: ['coffee-script/register']
-      }))
-      .pipe(istanbul.writeReports({
-        dir: './test-coverage',
-      }))
-      // .pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }))
-    ;
-}));
-
-gulp.task('default', gulp.series('build', 'test'));
+gulp.task('default', gulp.series('build-basic', 'build-full'));
