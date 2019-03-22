@@ -14,7 +14,7 @@
     "@babel/preset-env": "^7.3.4",
     "@types/chai": "^4.1.7",
     "@types/gulp": "^4.0.6",
-    "@types/knex": "^0.15.2",
+    "@types/knex": "^0.16.1",
     "@types/lodash": "^4.14.122",
     "@types/mocha": "^5.2.6",
     "benchmark": "^2.1.4",
