@@ -44,7 +44,7 @@ function _extend(dst) {
 
   if (dst && sources) {
     var _loop = function _loop() {
-      var src = sources[_i];
+      var src = _sources[_i];
 
       if (_typeof(src) === 'object') {
         Object.getOwnPropertyNames(src).forEach(function (key) {
@@ -53,7 +53,7 @@ function _extend(dst) {
       }
     };
 
-    for (var _i = 0; _i < sources.length; _i++) {
+    for (var _i = 0, _sources = sources; _i < _sources.length; _i++) {
       _loop();
     }
   }
@@ -131,8 +131,8 @@ function _registerValueHandler(handlers, type, handler) {
     _iteratorError = err;
   } finally {
     try {
-      if (!_iteratorNormalCompletion && _iterator.return != null) {
-        _iterator.return();
+      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+        _iterator["return"]();
       }
     } finally {
       if (_didIteratorError) {
@@ -812,11 +812,11 @@ function _buildSquel() {
     _createClass(_class3, [{
       key: "and",
       value: function and(expr) {
+        expr = this._sanitizeExpression(expr);
+
         for (var _len2 = arguments.length, params = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
           params[_key2 - 1] = arguments[_key2];
         }
-
-        expr = this._sanitizeExpression(expr);
 
         this._nodes.push({
           type: 'AND',
@@ -830,11 +830,11 @@ function _buildSquel() {
     }, {
       key: "or",
       value: function or(expr) {
+        expr = this._sanitizeExpression(expr);
+
         for (var _len3 = arguments.length, params = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
           params[_key3 - 1] = arguments[_key3];
         }
-
-        expr = this._sanitizeExpression(expr);
 
         this._nodes.push({
           type: 'OR',
@@ -884,8 +884,8 @@ function _buildSquel() {
           _iteratorError2 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-              _iterator2.return();
+            if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+              _iterator2["return"]();
             }
           } finally {
             if (_didIteratorError2) {
@@ -1011,8 +1011,8 @@ function _buildSquel() {
           _iteratorError3 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-              _iterator3.return();
+            if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+              _iterator3["return"]();
             }
           } finally {
             if (_didIteratorError3) {
@@ -1287,8 +1287,8 @@ function _buildSquel() {
             _iteratorError4 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-                _iterator4.return();
+              if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
+                _iterator4["return"]();
               }
             } finally {
               if (_didIteratorError4) {
@@ -1478,8 +1478,8 @@ function _buildSquel() {
             _iteratorError5 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
-                _iterator5.return();
+              if (!_iteratorNormalCompletion5 && _iterator5["return"] != null) {
+                _iterator5["return"]();
               }
             } finally {
               if (_didIteratorError5) {
@@ -1570,8 +1570,8 @@ function _buildSquel() {
           _iteratorError6 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
-              _iterator6.return();
+            if (!_iteratorNormalCompletion6 && _iterator6["return"] != null) {
+              _iterator6["return"]();
             }
           } finally {
             if (_didIteratorError6) {
@@ -2153,8 +2153,8 @@ function _buildSquel() {
           _iteratorError7 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion7 && _iterator7.return != null) {
-              _iterator7.return();
+            if (!_iteratorNormalCompletion7 && _iterator7["return"] != null) {
+              _iterator7["return"]();
             }
           } finally {
             if (_didIteratorError7) {
@@ -2313,8 +2313,8 @@ function _buildSquel() {
           _iteratorError8 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion8 && _iterator8.return != null) {
-              _iterator8.return();
+            if (!_iteratorNormalCompletion8 && _iterator8["return"] != null) {
+              _iterator8["return"]();
             }
           } finally {
             if (_didIteratorError8) {
@@ -2488,8 +2488,8 @@ function _buildSquel() {
           _iteratorError9 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion9 && _iterator9.return != null) {
-              _iterator9.return();
+            if (!_iteratorNormalCompletion9 && _iterator9["return"] != null) {
+              _iterator9["return"]();
             }
           } finally {
             if (_didIteratorError9) {
@@ -2616,8 +2616,8 @@ function _buildSquel() {
           _iteratorError10 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion10 && _iterator10.return != null) {
-              _iterator10.return();
+            if (!_iteratorNormalCompletion10 && _iterator10["return"] != null) {
+              _iterator10["return"]();
             }
           } finally {
             if (_didIteratorError10) {
@@ -2703,8 +2703,8 @@ function _buildSquel() {
         _iteratorError11 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion11 && _iterator11.return != null) {
-            _iterator11.return();
+          if (!_iteratorNormalCompletion11 && _iterator11["return"] != null) {
+            _iterator11["return"]();
           }
         } finally {
           if (_didIteratorError11) {
@@ -2739,8 +2739,8 @@ function _buildSquel() {
           _iteratorError12 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion12 && _iterator12.return != null) {
-              _iterator12.return();
+            if (!_iteratorNormalCompletion12 && _iterator12["return"] != null) {
+              _iterator12["return"]();
             }
           } finally {
             if (_didIteratorError12) {
@@ -2778,8 +2778,8 @@ function _buildSquel() {
           _iteratorError13 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion13 && _iterator13.return != null) {
-              _iterator13.return();
+            if (!_iteratorNormalCompletion13 && _iterator13["return"] != null) {
+              _iterator13["return"]();
             }
           } finally {
             if (_didIteratorError13) {
@@ -2932,12 +2932,12 @@ function _buildSquel() {
   }(cls.QueryBuilder);
 
   var _squel = {
-    VERSION: '5.13.2',
+    VERSION: '5.13.3',
     flavour: flavour,
     expr: function expr(options) {
       return new cls.Expression(options);
     },
-    case: function _case(name, options) {
+    "case": function _case(name, options) {
       return new cls.Case(name, options);
     },
     select: function select(options, blocks) {
@@ -2949,25 +2949,25 @@ function _buildSquel() {
     insert: function insert(options, blocks) {
       return new cls.Insert(options, blocks);
     },
-    delete: function _delete(options, blocks) {
+    "delete": function _delete(options, blocks) {
       return new cls.Delete(options, blocks);
     },
     str: function str() {
       var inst = new cls.FunctionBlock();
-      inst.function.apply(inst, arguments);
+      inst["function"].apply(inst, arguments);
       return inst;
     },
     rstr: function rstr() {
       var inst = new cls.FunctionBlock({
         rawNesting: true
       });
-      inst.function.apply(inst, arguments);
+      inst["function"].apply(inst, arguments);
       return inst;
     },
     registerValueHandler: cls.registerValueHandler
   }; // aliases
 
-  _squel.remove = _squel.delete; // classes
+  _squel.remove = _squel["delete"]; // classes
 
   _squel.cls = cls;
   return _squel;
