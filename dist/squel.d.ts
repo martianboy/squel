@@ -867,11 +867,11 @@ declare namespace squel {
   type LockLevel = 'FOR UPDATE' | 'FOR NO KEY UPDATE' | 'FOR SHARE' | 'FOR KEY SHARE'
 
   interface LockBlock extends Block {
-    forLocking(lock_level: LockLevel): this;
+    locking(lock_level: LockLevel): this;
   }
 
   interface LockMixin {
-    forLocking(lock_level: LockLevel): this;
+    locking(lock_level: LockLevel): this;
   }
 
   interface Join {

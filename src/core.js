@@ -1870,13 +1870,13 @@ function _buildSquel(flavour = null) {
   }
 
   cls.LockBlock = class extends cls.Block {
-    forLocking(lock_level) {
+    locking(lock_level) {
       this.lock_level = lock_level
     }
 
     _toParamString() {
       return {
-        text: this.lock_level ? `FOR ${this.lock_level}` : '',
+        text: this.lock_level ? this.lock_level : '',
         values: []
       }
     }

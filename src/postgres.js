@@ -263,6 +263,7 @@ cls.WithValuesBlock = class extends cls.AbstractSetFieldBlock {
         new cls.OrderByBlock(options),
         new cls.LimitBlock(options),
         new cls.OffsetBlock(options),
+        new cls.LockBlock(options),
         new cls.SetOpBlock(options)
       ];
 

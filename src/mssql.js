@@ -246,6 +246,7 @@ squel.flavours['mssql'] = function(_squel) {
         new cls.OrderByBlock(options),
         limitOffsetTopBlock.OFFSET(),
         limitOffsetTopBlock.LIMIT(),
+        new cls.LockBlock(options),
         new cls.SetOpBlock(options),
       ];
 
