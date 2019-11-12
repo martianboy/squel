@@ -2539,15 +2539,15 @@ function _buildSquel() {
     }
 
     _createClass(_class28, [{
-      key: "forLocking",
-      value: function forLocking(lock_level) {
+      key: "locking",
+      value: function locking(lock_level) {
         this.lock_level = lock_level;
       }
     }, {
       key: "_toParamString",
       value: function _toParamString() {
         return {
-          text: this.lock_level ? "FOR ".concat(this.lock_level) : '',
+          text: this.lock_level ? this.lock_level : '',
           values: []
         };
       }
@@ -2980,7 +2980,7 @@ function _buildSquel() {
   }(cls.QueryBuilder);
 
   var _squel = {
-    VERSION: '5.14.0',
+    VERSION: '5.14.1',
     flavour: flavour,
     expr: function expr(options) {
       return new cls.Expression(options);
@@ -3436,7 +3436,7 @@ squel.flavours['mssql'] = function (_squel) {
       _classCallCheck(this, _class43);
 
       var limitOffsetTopBlock = new cls.MssqlLimitOffsetTopBlock(options);
-      blocks = blocks || [new cls.StringBlock(options, 'SELECT'), new cls.DistinctBlock(options), limitOffsetTopBlock.TOP(), new cls.GetFieldBlock(options), new cls.FromTableBlock(options), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.GroupByBlock(options), new cls.OrderByBlock(options), limitOffsetTopBlock.OFFSET(), limitOffsetTopBlock.LIMIT(), new cls.SetOpBlock(options)];
+      blocks = blocks || [new cls.StringBlock(options, 'SELECT'), new cls.DistinctBlock(options), limitOffsetTopBlock.TOP(), new cls.GetFieldBlock(options), new cls.FromTableBlock(options), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.GroupByBlock(options), new cls.OrderByBlock(options), limitOffsetTopBlock.OFFSET(), limitOffsetTopBlock.LIMIT(), new cls.LockBlock(options), new cls.SetOpBlock(options)];
       return _possibleConstructorReturn(this, _getPrototypeOf(_class43).call(this, options, blocks));
     }
 
@@ -3996,7 +3996,7 @@ squel.flavours['postgres'] = function (_squel) {
 
       _classCallCheck(this, _class55);
 
-      blocks = blocks || [new cls.WithBlock(options), new cls.WithValuesBlock(options), new cls.StringBlock(options, 'SELECT'), new cls.FunctionBlock(options), new cls.DistinctOnBlock(options), new cls.GetFieldBlock(options), new cls.FromTableBlock(options), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.GroupByBlock(options), new cls.HavingBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options), new cls.OffsetBlock(options), new cls.SetOpBlock(options)];
+      blocks = blocks || [new cls.WithBlock(options), new cls.WithValuesBlock(options), new cls.StringBlock(options, 'SELECT'), new cls.FunctionBlock(options), new cls.DistinctOnBlock(options), new cls.GetFieldBlock(options), new cls.FromTableBlock(options), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.GroupByBlock(options), new cls.HavingBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options), new cls.OffsetBlock(options), new cls.LockBlock(options), new cls.SetOpBlock(options)];
       return _possibleConstructorReturn(this, _getPrototypeOf(_class55).call(this, options, blocks));
     }
 
