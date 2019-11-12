@@ -1869,6 +1869,19 @@ function _buildSquel(flavour = null) {
     }
   }
 
+  cls.LockBlock = class extends cls.Block {
+    forLocking(lock_level) {
+      this.lock_level = lock_level
+    }
+
+    _toParamString() {
+      return {
+        text: this.lock_level ? `FOR ${this.lock_level}` : '',
+        values: []
+      }
+    }
+  }
+
 
   cls.SetOpBlock = class extends cls.Block {
     constructor (options) {
@@ -2111,6 +2124,7 @@ function _buildSquel(flavour = null) {
         new cls.OrderByBlock(options),
         new cls.LimitBlock(options),
         new cls.OffsetBlock(options),
+        new cls.LockBlock(options),
         new cls.SetOpBlock(options),
       ];
 

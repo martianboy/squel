@@ -864,6 +864,16 @@ declare namespace squel {
     order(field: string, direction?: boolean | null, ...values: any[]): this;
   }
 
+  type LockLevel = 'FOR UPDATE' | 'FOR NO KEY UPDATE' | 'FOR SHARE' | 'FOR KEY SHARE'
+
+  interface LockBlock extends Block {
+    forLocking(lock_level: LockLevel): this;
+  }
+
+  interface LockMixin {
+    forLocking(lock_level: LockLevel): this;
+  }
+
   interface Join {
     type: string;
     table: string | BaseBuilder;
@@ -1096,6 +1106,7 @@ declare namespace squel {
     WhereBlock: {new(options?: ConditionBlockOptions): WhereBlock};
     HavingBlock: {new(options?: ConditionBlockOptions): HavingBlock};
     OrderByBlock: BuilderConstructor<OrderByBlock>;
+    LockBlock: BuilderConstructor<LockBlock>;
     JoinBlock: BuilderConstructor<JoinBlock>;
     SetOpBlock: BuilderConstructor<SetOpBlock>;
 
@@ -1160,6 +1171,7 @@ declare namespace squel {
     OrderByMixin,
     LimitMixin,
     OffsetMixin,
+    LockMixin,
     SetOpMixin {
   }
 
