@@ -43,18 +43,37 @@ function _extend(dst) {
   }
 
   if (dst && sources) {
-    var _loop = function _loop() {
-      var src = _sources[_i];
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
 
-      if (_typeof(src) === 'object') {
-        Object.getOwnPropertyNames(src).forEach(function (key) {
-          dst[key] = src[key];
-        });
+    try {
+      var _loop = function _loop() {
+        var src = _step.value;
+
+        if (_typeof(src) === 'object') {
+          Object.getOwnPropertyNames(src).forEach(function (key) {
+            dst[key] = src[key];
+          });
+        }
+      };
+
+      for (var _iterator = sources[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        _loop();
       }
-    };
-
-    for (var _i = 0, _sources = sources; _i < _sources.length; _i++) {
-      _loop();
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+          _iterator["return"]();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
     }
   }
 
@@ -113,13 +132,13 @@ function _registerValueHandler(handlers, type, handler) {
     throw new Error("handler must be a function");
   }
 
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
 
   try {
-    for (var _iterator = handlers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var typeHandler = _step.value;
+    for (var _iterator2 = handlers[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var typeHandler = _step2.value;
 
       if (typeHandler.type === type) {
         typeHandler.handler = handler;
@@ -127,16 +146,16 @@ function _registerValueHandler(handlers, type, handler) {
       }
     }
   } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
   } finally {
     try {
-      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-        _iterator["return"]();
+      if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+        _iterator2["return"]();
       }
     } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
+      if (_didIteratorError2) {
+        throw _iteratorError2;
       }
     }
   }
@@ -850,13 +869,13 @@ function _buildSquel() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var totalStr = [],
             totalValues = [];
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
 
         try {
-          for (var _iterator2 = this._nodes[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var node = _step2.value;
+          for (var _iterator3 = this._nodes[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var node = _step3.value;
             var type = node.type,
                 expr = node.expr,
                 para = node.para;
@@ -880,16 +899,16 @@ function _buildSquel() {
             });
           }
         } catch (err) {
-          _didIteratorError2 = true;
-          _iteratorError2 = err;
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-              _iterator2["return"]();
+            if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+              _iterator3["return"]();
             }
           } finally {
-            if (_didIteratorError2) {
-              throw _iteratorError2;
+            if (_didIteratorError3) {
+              throw _iteratorError3;
             }
           }
         }
@@ -984,16 +1003,16 @@ function _buildSquel() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var totalStr = '',
             totalValues = [];
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
+        var _iteratorNormalCompletion4 = true;
+        var _didIteratorError4 = false;
+        var _iteratorError4 = undefined;
 
         try {
-          for (var _iterator3 = this._cases[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-            var _step3$value = _step3.value,
-                expression = _step3$value.expression,
-                values = _step3$value.values,
-                result = _step3$value.result;
+          for (var _iterator4 = this._cases[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            var _step4$value = _step4.value,
+                expression = _step4$value.expression,
+                values = _step4$value.values,
+                result = _step4$value.result;
             totalStr = _pad(totalStr, ' ');
 
             var ret = this._buildString(expression, values, {
@@ -1007,16 +1026,16 @@ function _buildSquel() {
             });
           }
         } catch (err) {
-          _didIteratorError3 = true;
-          _iteratorError3 = err;
+          _didIteratorError4 = true;
+          _iteratorError4 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
-              _iterator3["return"]();
+            if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
+              _iterator4["return"]();
             }
           } finally {
-            if (_didIteratorError3) {
-              throw _iteratorError3;
+            if (_didIteratorError4) {
+              throw _iteratorError4;
             }
           }
         }
@@ -1248,15 +1267,15 @@ function _buildSquel() {
 
         if (this._hasTable()) {
           // retrieve the parameterised queries
-          var _iteratorNormalCompletion4 = true;
-          var _didIteratorError4 = false;
-          var _iteratorError4 = undefined;
+          var _iteratorNormalCompletion5 = true;
+          var _didIteratorError5 = false;
+          var _iteratorError5 = undefined;
 
           try {
-            for (var _iterator4 = this._tables[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-              var _step4$value = _step4.value,
-                  table = _step4$value.table,
-                  alias = _step4$value.alias;
+            for (var _iterator5 = this._tables[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+              var _step5$value = _step5.value,
+                  table = _step5$value.table,
+                  alias = _step5$value.alias;
               totalStr = _pad(totalStr, ', ');
               var tableStr = void 0;
 
@@ -1283,16 +1302,16 @@ function _buildSquel() {
               totalStr += tableStr;
             }
           } catch (err) {
-            _didIteratorError4 = true;
-            _iteratorError4 = err;
+            _didIteratorError5 = true;
+            _iteratorError5 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
-                _iterator4["return"]();
+              if (!_iteratorNormalCompletion5 && _iterator5["return"] != null) {
+                _iterator5["return"]();
               }
             } finally {
-              if (_didIteratorError4) {
-                throw _iteratorError4;
+              if (_didIteratorError5) {
+                throw _iteratorError5;
               }
             }
           }
@@ -1464,26 +1483,26 @@ function _buildSquel() {
         var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
         if (_isArray(_fields)) {
-          var _iteratorNormalCompletion5 = true;
-          var _didIteratorError5 = false;
-          var _iteratorError5 = undefined;
+          var _iteratorNormalCompletion6 = true;
+          var _didIteratorError6 = false;
+          var _iteratorError6 = undefined;
 
           try {
-            for (var _iterator5 = _fields[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-              var field = _step5.value;
+            for (var _iterator6 = _fields[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+              var field = _step6.value;
               this.field(field, null, options);
             }
           } catch (err) {
-            _didIteratorError5 = true;
-            _iteratorError5 = err;
+            _didIteratorError6 = true;
+            _iteratorError6 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion5 && _iterator5["return"] != null) {
-                _iterator5["return"]();
+              if (!_iteratorNormalCompletion6 && _iterator6["return"] != null) {
+                _iterator6["return"]();
               }
             } finally {
-              if (_didIteratorError5) {
-                throw _iteratorError5;
+              if (_didIteratorError6) {
+                throw _iteratorError6;
               }
             }
           }
@@ -1535,13 +1554,13 @@ function _buildSquel() {
             buildParameterized = options.buildParameterized;
         var totalStr = '',
             totalValues = [];
-        var _iteratorNormalCompletion6 = true;
-        var _didIteratorError6 = false;
-        var _iteratorError6 = undefined;
+        var _iteratorNormalCompletion7 = true;
+        var _didIteratorError7 = false;
+        var _iteratorError7 = undefined;
 
         try {
-          for (var _iterator6 = this._fields[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-            var field = _step6.value;
+          for (var _iterator7 = this._fields[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+            var field = _step7.value;
             totalStr = _pad(totalStr, ", ");
             var name = field.name,
                 alias = field.alias,
@@ -1566,16 +1585,16 @@ function _buildSquel() {
             }
           }
         } catch (err) {
-          _didIteratorError6 = true;
-          _iteratorError6 = err;
+          _didIteratorError7 = true;
+          _iteratorError7 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion6 && _iterator6["return"] != null) {
-              _iterator6["return"]();
+            if (!_iteratorNormalCompletion7 && _iterator7["return"] != null) {
+              _iterator7["return"]();
             }
           } finally {
-            if (_didIteratorError6) {
-              throw _iteratorError6;
+            if (_didIteratorError7) {
+              throw _iteratorError7;
             }
           }
         }
@@ -2125,15 +2144,15 @@ function _buildSquel() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var totalStr = [],
             totalValues = [];
-        var _iteratorNormalCompletion7 = true;
-        var _didIteratorError7 = false;
-        var _iteratorError7 = undefined;
+        var _iteratorNormalCompletion8 = true;
+        var _didIteratorError8 = false;
+        var _iteratorError8 = undefined;
 
         try {
-          for (var _iterator7 = this._conditions[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-            var _step7$value = _step7.value,
-                expr = _step7$value.expr,
-                values = _step7$value.values;
+          for (var _iterator8 = this._conditions[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+            var _step8$value = _step8.value,
+                expr = _step8$value.expr,
+                values = _step8$value.values;
             var ret = cls.isSquelBuilder(expr) ? expr._toParamString({
               buildParameterized: options.buildParameterized
             }) : this._buildString(expr, values, {
@@ -2149,16 +2168,16 @@ function _buildSquel() {
             });
           }
         } catch (err) {
-          _didIteratorError7 = true;
-          _iteratorError7 = err;
+          _didIteratorError8 = true;
+          _iteratorError8 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion7 && _iterator7["return"] != null) {
-              _iterator7["return"]();
+            if (!_iteratorNormalCompletion8 && _iterator8["return"] != null) {
+              _iterator8["return"]();
             }
           } finally {
-            if (_didIteratorError7) {
-              throw _iteratorError7;
+            if (_didIteratorError8) {
+              throw _iteratorError8;
             }
           }
         }
@@ -2284,16 +2303,16 @@ function _buildSquel() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var totalStr = '',
             totalValues = [];
-        var _iteratorNormalCompletion8 = true;
-        var _didIteratorError8 = false;
-        var _iteratorError8 = undefined;
+        var _iteratorNormalCompletion9 = true;
+        var _didIteratorError9 = false;
+        var _iteratorError9 = undefined;
 
         try {
-          for (var _iterator8 = this._orders[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-            var _step8$value = _step8.value,
-                field = _step8$value.field,
-                dir = _step8$value.dir,
-                values = _step8$value.values;
+          for (var _iterator9 = this._orders[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+            var _step9$value = _step9.value,
+                field = _step9$value.field,
+                dir = _step9$value.dir,
+                values = _step9$value.values;
             totalStr = _pad(totalStr, ', ');
 
             var ret = this._buildString(field, values, {
@@ -2309,16 +2328,16 @@ function _buildSquel() {
             }
           }
         } catch (err) {
-          _didIteratorError8 = true;
-          _iteratorError8 = err;
+          _didIteratorError9 = true;
+          _iteratorError9 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion8 && _iterator8["return"] != null) {
-              _iterator8["return"]();
+            if (!_iteratorNormalCompletion9 && _iterator9["return"] != null) {
+              _iterator9["return"]();
             }
           } finally {
-            if (_didIteratorError8) {
-              throw _iteratorError8;
+            if (_didIteratorError9) {
+              throw _iteratorError9;
             }
           }
         }
@@ -2427,17 +2446,17 @@ function _buildSquel() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var totalStr = "",
             totalValues = [];
-        var _iteratorNormalCompletion9 = true;
-        var _didIteratorError9 = false;
-        var _iteratorError9 = undefined;
+        var _iteratorNormalCompletion10 = true;
+        var _didIteratorError10 = false;
+        var _iteratorError10 = undefined;
 
         try {
-          for (var _iterator9 = this._joins[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-            var _step9$value = _step9.value,
-                type = _step9$value.type,
-                table = _step9$value.table,
-                alias = _step9$value.alias,
-                condition = _step9$value.condition;
+          for (var _iterator10 = this._joins[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+            var _step10$value = _step10.value,
+                type = _step10$value.type,
+                table = _step10$value.table,
+                alias = _step10$value.alias,
+                condition = _step10$value.condition;
             totalStr = _pad(totalStr, this.options.separator);
             var tableStr = void 0;
 
@@ -2484,16 +2503,16 @@ function _buildSquel() {
             }
           }
         } catch (err) {
-          _didIteratorError9 = true;
-          _iteratorError9 = err;
+          _didIteratorError10 = true;
+          _iteratorError10 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion9 && _iterator9["return"] != null) {
-              _iterator9["return"]();
+            if (!_iteratorNormalCompletion10 && _iterator10["return"] != null) {
+              _iterator10["return"]();
             }
           } finally {
-            if (_didIteratorError9) {
-              throw _iteratorError9;
+            if (_didIteratorError10) {
+              throw _iteratorError10;
             }
           }
         }
@@ -2508,17 +2527,46 @@ function _buildSquel() {
     return _class27;
   }(cls.Block);
 
-  cls.SetOpBlock =
+  cls.LockBlock =
   /*#__PURE__*/
   function (_cls$Block13) {
     _inherits(_class28, _cls$Block13);
 
-    function _class28(options) {
-      var _this19;
-
+    function _class28() {
       _classCallCheck(this, _class28);
 
-      _this19 = _possibleConstructorReturn(this, _getPrototypeOf(_class28).call(this, options));
+      return _possibleConstructorReturn(this, _getPrototypeOf(_class28).apply(this, arguments));
+    }
+
+    _createClass(_class28, [{
+      key: "forLocking",
+      value: function forLocking(lock_level) {
+        this.lock_level = lock_level;
+      }
+    }, {
+      key: "_toParamString",
+      value: function _toParamString() {
+        return {
+          text: this.lock_level ? "FOR ".concat(this.lock_level) : '',
+          values: []
+        };
+      }
+    }]);
+
+    return _class28;
+  }(cls.Block);
+
+  cls.SetOpBlock =
+  /*#__PURE__*/
+  function (_cls$Block14) {
+    _inherits(_class29, _cls$Block14);
+
+    function _class29(options) {
+      var _this19;
+
+      _classCallCheck(this, _class29);
+
+      _this19 = _possibleConstructorReturn(this, _getPrototypeOf(_class29).call(this, options));
       _this19._sets = [];
       return _this19;
     }
@@ -2531,7 +2579,7 @@ function _buildSquel() {
      */
 
 
-    _createClass(_class28, [{
+    _createClass(_class29, [{
       key: "_add",
       value: function _add(table, type) {
         table = this._sanitizeTable(table);
@@ -2583,15 +2631,15 @@ function _buildSquel() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var totalStr = '',
             totalValues = [];
-        var _iteratorNormalCompletion10 = true;
-        var _didIteratorError10 = false;
-        var _iteratorError10 = undefined;
+        var _iteratorNormalCompletion11 = true;
+        var _didIteratorError11 = false;
+        var _iteratorError11 = undefined;
 
         try {
-          for (var _iterator10 = this._sets[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-            var _step10$value = _step10.value,
-                type = _step10$value.type,
-                table = _step10$value.table;
+          for (var _iterator11 = this._sets[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+            var _step11$value = _step11.value,
+                type = _step11$value.type,
+                table = _step11$value.table;
             totalStr = _pad(totalStr, this.options.separator);
             var tableStr = void 0;
 
@@ -2612,16 +2660,16 @@ function _buildSquel() {
             totalStr += "".concat(type, " ").concat(tableStr);
           }
         } catch (err) {
-          _didIteratorError10 = true;
-          _iteratorError10 = err;
+          _didIteratorError11 = true;
+          _iteratorError11 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion10 && _iterator10["return"] != null) {
-              _iterator10["return"]();
+            if (!_iteratorNormalCompletion11 && _iterator11["return"] != null) {
+              _iterator11["return"]();
             }
           } finally {
-            if (_didIteratorError10) {
-              throw _iteratorError10;
+            if (_didIteratorError11) {
+              throw _iteratorError11;
             }
           }
         }
@@ -2633,7 +2681,7 @@ function _buildSquel() {
       }
     }]);
 
-    return _class28;
+    return _class29;
   }(cls.Block);
   /*
   # ---------------------------------------------------------------------------------------------------------
@@ -2655,28 +2703,28 @@ function _buildSquel() {
   cls.QueryBuilder =
   /*#__PURE__*/
   function (_cls$BaseBuilder4) {
-    _inherits(_class29, _cls$BaseBuilder4);
+    _inherits(_class30, _cls$BaseBuilder4);
 
     /**
     # Constructor
     #
     # blocks - array of cls.BaseBuilderBlock instances to build the query with.
     */
-    function _class29(options, blocks) {
+    function _class30(options, blocks) {
       var _this20;
 
-      _classCallCheck(this, _class29);
+      _classCallCheck(this, _class30);
 
-      _this20 = _possibleConstructorReturn(this, _getPrototypeOf(_class29).call(this, options));
+      _this20 = _possibleConstructorReturn(this, _getPrototypeOf(_class30).call(this, options));
       _this20.blocks = blocks || []; // Copy exposed methods into myself
 
-      var _iteratorNormalCompletion11 = true;
-      var _didIteratorError11 = false;
-      var _iteratorError11 = undefined;
+      var _iteratorNormalCompletion12 = true;
+      var _didIteratorError12 = false;
+      var _iteratorError12 = undefined;
 
       try {
-        for (var _iterator11 = _this20.blocks[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-          var block = _step11.value;
+        for (var _iterator12 = _this20.blocks[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+          var block = _step12.value;
           var exposedMethods = block.exposedMethods();
 
           for (var methodName in exposedMethods) {
@@ -2699,16 +2747,16 @@ function _buildSquel() {
           }
         }
       } catch (err) {
-        _didIteratorError11 = true;
-        _iteratorError11 = err;
+        _didIteratorError12 = true;
+        _iteratorError12 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion11 && _iterator11["return"] != null) {
-            _iterator11["return"]();
+          if (!_iteratorNormalCompletion12 && _iterator12["return"] != null) {
+            _iterator12["return"]();
           }
         } finally {
-          if (_didIteratorError11) {
-            throw _iteratorError11;
+          if (_didIteratorError12) {
+            throw _iteratorError12;
           }
         }
       }
@@ -2722,34 +2770,34 @@ function _buildSquel() {
     */
 
 
-    _createClass(_class29, [{
+    _createClass(_class30, [{
       key: "registerValueHandler",
       value: function registerValueHandler(type, handler) {
-        var _iteratorNormalCompletion12 = true;
-        var _didIteratorError12 = false;
-        var _iteratorError12 = undefined;
+        var _iteratorNormalCompletion13 = true;
+        var _didIteratorError13 = false;
+        var _iteratorError13 = undefined;
 
         try {
-          for (var _iterator12 = this.blocks[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-            var block = _step12.value;
+          for (var _iterator13 = this.blocks[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
+            var block = _step13.value;
             block.registerValueHandler(type, handler);
           }
         } catch (err) {
-          _didIteratorError12 = true;
-          _iteratorError12 = err;
+          _didIteratorError13 = true;
+          _iteratorError13 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion12 && _iterator12["return"] != null) {
-              _iterator12["return"]();
+            if (!_iteratorNormalCompletion13 && _iterator13["return"] != null) {
+              _iterator13["return"]();
             }
           } finally {
-            if (_didIteratorError12) {
-              throw _iteratorError12;
+            if (_didIteratorError13) {
+              throw _iteratorError13;
             }
           }
         }
 
-        _get(_getPrototypeOf(_class29.prototype), "registerValueHandler", this).call(this, type, handler);
+        _get(_getPrototypeOf(_class30.prototype), "registerValueHandler", this).call(this, type, handler);
 
         return this;
       }
@@ -2764,26 +2812,26 @@ function _buildSquel() {
       key: "updateOptions",
       value: function updateOptions(options) {
         this.options = _extend({}, this.options, options);
-        var _iteratorNormalCompletion13 = true;
-        var _didIteratorError13 = false;
-        var _iteratorError13 = undefined;
+        var _iteratorNormalCompletion14 = true;
+        var _didIteratorError14 = false;
+        var _iteratorError14 = undefined;
 
         try {
-          for (var _iterator13 = this.blocks[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-            var block = _step13.value;
+          for (var _iterator14 = this.blocks[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
+            var block = _step14.value;
             block.options = _extend({}, block.options, options);
           }
         } catch (err) {
-          _didIteratorError13 = true;
-          _iteratorError13 = err;
+          _didIteratorError14 = true;
+          _iteratorError14 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion13 && _iterator13["return"] != null) {
-              _iterator13["return"]();
+            if (!_iteratorNormalCompletion14 && _iterator14["return"] != null) {
+              _iterator14["return"]();
             }
           } finally {
-            if (_didIteratorError13) {
-              throw _iteratorError13;
+            if (_didIteratorError14) {
+              throw _iteratorError14;
             }
           }
         }
@@ -2854,85 +2902,85 @@ function _buildSquel() {
       }
     }]);
 
-    return _class29;
+    return _class30;
   }(cls.BaseBuilder); // SELECT query builder.
 
 
   cls.Select =
   /*#__PURE__*/
   function (_cls$QueryBuilder) {
-    _inherits(_class30, _cls$QueryBuilder);
-
-    function _class30(options) {
-      var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-      _classCallCheck(this, _class30);
-
-      blocks = blocks || [new cls.StringBlock(options, 'SELECT'), new cls.FunctionBlock(options), new cls.DistinctBlock(options), new cls.GetFieldBlock(options), new cls.FromTableBlock(options), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.GroupByBlock(options), new cls.HavingBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options), new cls.OffsetBlock(options), new cls.SetOpBlock(options)];
-      return _possibleConstructorReturn(this, _getPrototypeOf(_class30).call(this, options, blocks));
-    }
-
-    return _class30;
-  }(cls.QueryBuilder); // UPDATE query builder.
-
-
-  cls.Update =
-  /*#__PURE__*/
-  function (_cls$QueryBuilder2) {
-    _inherits(_class31, _cls$QueryBuilder2);
+    _inherits(_class31, _cls$QueryBuilder);
 
     function _class31(options) {
       var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
       _classCallCheck(this, _class31);
 
-      blocks = blocks || [new cls.StringBlock(options, 'UPDATE'), new cls.UpdateTableBlock(options), new cls.SetFieldBlock(options), new cls.WhereBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options)];
+      blocks = blocks || [new cls.StringBlock(options, 'SELECT'), new cls.FunctionBlock(options), new cls.DistinctBlock(options), new cls.GetFieldBlock(options), new cls.FromTableBlock(options), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.GroupByBlock(options), new cls.HavingBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options), new cls.OffsetBlock(options), new cls.LockBlock(options), new cls.SetOpBlock(options)];
       return _possibleConstructorReturn(this, _getPrototypeOf(_class31).call(this, options, blocks));
     }
 
     return _class31;
-  }(cls.QueryBuilder); // DELETE query builder.
+  }(cls.QueryBuilder); // UPDATE query builder.
 
 
-  cls.Delete =
+  cls.Update =
   /*#__PURE__*/
-  function (_cls$QueryBuilder3) {
-    _inherits(_class32, _cls$QueryBuilder3);
+  function (_cls$QueryBuilder2) {
+    _inherits(_class32, _cls$QueryBuilder2);
 
     function _class32(options) {
       var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
       _classCallCheck(this, _class32);
 
-      blocks = blocks || [new cls.StringBlock(options, 'DELETE'), new cls.TargetTableBlock(options), new cls.FromTableBlock(_extend({}, options, {
-        singleTable: true
-      })), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options)];
+      blocks = blocks || [new cls.StringBlock(options, 'UPDATE'), new cls.UpdateTableBlock(options), new cls.SetFieldBlock(options), new cls.WhereBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options)];
       return _possibleConstructorReturn(this, _getPrototypeOf(_class32).call(this, options, blocks));
     }
 
     return _class32;
-  }(cls.QueryBuilder); // An INSERT query builder.
+  }(cls.QueryBuilder); // DELETE query builder.
 
 
-  cls.Insert =
+  cls.Delete =
   /*#__PURE__*/
-  function (_cls$QueryBuilder4) {
-    _inherits(_class33, _cls$QueryBuilder4);
+  function (_cls$QueryBuilder3) {
+    _inherits(_class33, _cls$QueryBuilder3);
 
     function _class33(options) {
       var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
       _classCallCheck(this, _class33);
 
-      blocks = blocks || [new cls.StringBlock(options, 'INSERT'), new cls.IntoTableBlock(options), new cls.InsertFieldValueBlock(options), new cls.InsertFieldsFromQueryBlock(options)];
+      blocks = blocks || [new cls.StringBlock(options, 'DELETE'), new cls.TargetTableBlock(options), new cls.FromTableBlock(_extend({}, options, {
+        singleTable: true
+      })), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options)];
       return _possibleConstructorReturn(this, _getPrototypeOf(_class33).call(this, options, blocks));
     }
 
     return _class33;
+  }(cls.QueryBuilder); // An INSERT query builder.
+
+
+  cls.Insert =
+  /*#__PURE__*/
+  function (_cls$QueryBuilder4) {
+    _inherits(_class34, _cls$QueryBuilder4);
+
+    function _class34(options) {
+      var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      _classCallCheck(this, _class34);
+
+      blocks = blocks || [new cls.StringBlock(options, 'INSERT'), new cls.IntoTableBlock(options), new cls.InsertFieldValueBlock(options), new cls.InsertFieldsFromQueryBlock(options)];
+      return _possibleConstructorReturn(this, _getPrototypeOf(_class34).call(this, options, blocks));
+    }
+
+    return _class34;
   }(cls.QueryBuilder);
 
   var _squel = {
-    VERSION: '5.13.5',
+    VERSION: '5.14.0',
     flavour: flavour,
     expr: function expr(options) {
       return new cls.Expression(options);
@@ -3027,15 +3075,15 @@ squel.flavours['mssql'] = function (_squel) {
 
   cls.MssqlLimitOffsetTopBlock =
   /*#__PURE__*/
-  function (_cls$Block14) {
-    _inherits(_class34, _cls$Block14);
+  function (_cls$Block15) {
+    _inherits(_class35, _cls$Block15);
 
-    function _class34(options) {
+    function _class35(options) {
       var _this22;
 
-      _classCallCheck(this, _class34);
+      _classCallCheck(this, _class35);
 
-      _this22 = _possibleConstructorReturn(this, _getPrototypeOf(_class34).call(this, options));
+      _this22 = _possibleConstructorReturn(this, _getPrototypeOf(_class35).call(this, options));
       _this22._limits = null;
       _this22._offsets = null; // This is setup as one block to return many as they all have to use each others data at different times
       // The build String of EITHER LIMIT OR TOP should execute, never both.
@@ -3054,38 +3102,38 @@ squel.flavours['mssql'] = function (_squel) {
 
       _this22.ParentBlock =
       /*#__PURE__*/
-      function (_cls$Block15) {
-        _inherits(_class35, _cls$Block15);
+      function (_cls$Block16) {
+        _inherits(_class36, _cls$Block16);
 
-        function _class35(parent) {
+        function _class36(parent) {
           var _this23;
 
-          _classCallCheck(this, _class35);
+          _classCallCheck(this, _class36);
 
-          _this23 = _possibleConstructorReturn(this, _getPrototypeOf(_class35).call(this, parent.options));
+          _this23 = _possibleConstructorReturn(this, _getPrototypeOf(_class36).call(this, parent.options));
           _this23._parent = parent;
           return _this23;
         }
 
-        return _class35;
+        return _class36;
       }(cls.Block);
 
       _this22.LimitBlock =
       /*#__PURE__*/
       function (_this22$ParentBlock) {
-        _inherits(_class36, _this22$ParentBlock);
+        _inherits(_class37, _this22$ParentBlock);
 
-        function _class36(parent) {
+        function _class37(parent) {
           var _this24;
 
-          _classCallCheck(this, _class36);
+          _classCallCheck(this, _class37);
 
-          _this24 = _possibleConstructorReturn(this, _getPrototypeOf(_class36).call(this, parent));
+          _this24 = _possibleConstructorReturn(this, _getPrototypeOf(_class37).call(this, parent));
           _this24.limit = _limit;
           return _this24;
         }
 
-        _createClass(_class36, [{
+        _createClass(_class37, [{
           key: "_toParamString",
           value: function _toParamString() {
             var str = "";
@@ -3101,25 +3149,25 @@ squel.flavours['mssql'] = function (_squel) {
           }
         }]);
 
-        return _class36;
+        return _class37;
       }(_this22.ParentBlock);
 
       _this22.TopBlock =
       /*#__PURE__*/
       function (_this22$ParentBlock2) {
-        _inherits(_class37, _this22$ParentBlock2);
+        _inherits(_class38, _this22$ParentBlock2);
 
-        function _class37(parent) {
+        function _class38(parent) {
           var _this25;
 
-          _classCallCheck(this, _class37);
+          _classCallCheck(this, _class38);
 
-          _this25 = _possibleConstructorReturn(this, _getPrototypeOf(_class37).call(this, parent));
+          _this25 = _possibleConstructorReturn(this, _getPrototypeOf(_class38).call(this, parent));
           _this25.top = _limit;
           return _this25;
         }
 
-        _createClass(_class37, [{
+        _createClass(_class38, [{
           key: "_toParamString",
           value: function _toParamString() {
             var str = "";
@@ -3135,21 +3183,21 @@ squel.flavours['mssql'] = function (_squel) {
           }
         }]);
 
-        return _class37;
+        return _class38;
       }(_this22.ParentBlock);
 
       _this22.OffsetBlock =
       /*#__PURE__*/
       function (_this22$ParentBlock3) {
-        _inherits(_class38, _this22$ParentBlock3);
+        _inherits(_class39, _this22$ParentBlock3);
 
-        function _class38() {
-          _classCallCheck(this, _class38);
+        function _class39() {
+          _classCallCheck(this, _class39);
 
-          return _possibleConstructorReturn(this, _getPrototypeOf(_class38).apply(this, arguments));
+          return _possibleConstructorReturn(this, _getPrototypeOf(_class39).apply(this, arguments));
         }
 
-        _createClass(_class38, [{
+        _createClass(_class39, [{
           key: "offset",
           value: function offset(start) {
             this._parent._offsets = this._sanitizeLimitOffset(start);
@@ -3170,13 +3218,13 @@ squel.flavours['mssql'] = function (_squel) {
           }
         }]);
 
-        return _class38;
+        return _class39;
       }(_this22.ParentBlock);
 
       return _this22;
     }
 
-    _createClass(_class34, [{
+    _createClass(_class35, [{
       key: "LIMIT",
       value: function LIMIT() {
         return new this.LimitBlock(this);
@@ -3193,20 +3241,20 @@ squel.flavours['mssql'] = function (_squel) {
       }
     }]);
 
-    return _class34;
+    return _class35;
   }(cls.Block);
 
   cls.MssqlUpdateTopBlock =
   /*#__PURE__*/
-  function (_cls$Block16) {
-    _inherits(_class39, _cls$Block16);
+  function (_cls$Block17) {
+    _inherits(_class40, _cls$Block17);
 
-    function _class39(options) {
+    function _class40(options) {
       var _this26;
 
-      _classCallCheck(this, _class39);
+      _classCallCheck(this, _class40);
 
-      _this26 = _possibleConstructorReturn(this, _getPrototypeOf(_class39).call(this, options));
+      _this26 = _possibleConstructorReturn(this, _getPrototypeOf(_class40).call(this, options));
       _this26._limits = null;
 
       _this26.limit = _this26.top = function (max) {
@@ -3216,7 +3264,7 @@ squel.flavours['mssql'] = function (_squel) {
       return _this26;
     }
 
-    _createClass(_class39, [{
+    _createClass(_class40, [{
       key: "_toParamString",
       value: function _toParamString() {
         return {
@@ -3226,26 +3274,26 @@ squel.flavours['mssql'] = function (_squel) {
       }
     }]);
 
-    return _class39;
+    return _class40;
   }(cls.Block);
 
   cls.MssqlInsertFieldValueBlock =
   /*#__PURE__*/
   function (_cls$InsertFieldValue) {
-    _inherits(_class40, _cls$InsertFieldValue);
+    _inherits(_class41, _cls$InsertFieldValue);
 
-    function _class40(options) {
+    function _class41(options) {
       var _this27;
 
-      _classCallCheck(this, _class40);
+      _classCallCheck(this, _class41);
 
-      _this27 = _possibleConstructorReturn(this, _getPrototypeOf(_class40).call(this, options));
+      _this27 = _possibleConstructorReturn(this, _getPrototypeOf(_class41).call(this, options));
       _this27._outputs = [];
       return _this27;
     } // add fields to the output clause
 
 
-    _createClass(_class40, [{
+    _createClass(_class41, [{
       key: "output",
       value: function output(fields) {
         var _this28 = this;
@@ -3261,7 +3309,7 @@ squel.flavours['mssql'] = function (_squel) {
     }, {
       key: "_toParamString",
       value: function _toParamString(options) {
-        var ret = _get(_getPrototypeOf(_class40.prototype), "_toParamString", this).call(this, options);
+        var ret = _get(_getPrototypeOf(_class41.prototype), "_toParamString", this).call(this, options);
 
         if (ret.text.length && 0 < this._outputs.length) {
           var innerStr = "OUTPUT ".concat(this._outputs.join(', '), " ");
@@ -3273,20 +3321,20 @@ squel.flavours['mssql'] = function (_squel) {
       }
     }]);
 
-    return _class40;
+    return _class41;
   }(cls.InsertFieldValueBlock);
 
   cls.MssqlUpdateDeleteOutputBlock =
   /*#__PURE__*/
-  function (_cls$Block17) {
-    _inherits(_class41, _cls$Block17);
+  function (_cls$Block18) {
+    _inherits(_class42, _cls$Block18);
 
-    function _class41(options) {
+    function _class42(options) {
       var _this29;
 
-      _classCallCheck(this, _class41);
+      _classCallCheck(this, _class42);
 
-      _this29 = _possibleConstructorReturn(this, _getPrototypeOf(_class41).call(this, options));
+      _this29 = _possibleConstructorReturn(this, _getPrototypeOf(_class42).call(this, options));
       _this29._outputs = [];
       return _this29;
     }
@@ -3300,7 +3348,7 @@ squel.flavours['mssql'] = function (_squel) {
     */
 
 
-    _createClass(_class41, [{
+    _createClass(_class42, [{
       key: "outputs",
       value: function outputs(_outputs) {
         for (var output in _outputs) {
@@ -3334,13 +3382,13 @@ squel.flavours['mssql'] = function (_squel) {
         var totalStr = "";
 
         if (this._outputs.length) {
-          var _iteratorNormalCompletion14 = true;
-          var _didIteratorError14 = false;
-          var _iteratorError14 = undefined;
+          var _iteratorNormalCompletion15 = true;
+          var _didIteratorError15 = false;
+          var _iteratorError15 = undefined;
 
           try {
-            for (var _iterator14 = this._outputs[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
-              var output = _step14.value;
+            for (var _iterator15 = this._outputs[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
+              var output = _step15.value;
               totalStr = _pad(totalStr, ", ");
               totalStr += output.name;
 
@@ -3349,16 +3397,16 @@ squel.flavours['mssql'] = function (_squel) {
               }
             }
           } catch (err) {
-            _didIteratorError14 = true;
-            _iteratorError14 = err;
+            _didIteratorError15 = true;
+            _iteratorError15 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion14 && _iterator14["return"] != null) {
-                _iterator14["return"]();
+              if (!_iteratorNormalCompletion15 && _iterator15["return"] != null) {
+                _iterator15["return"]();
               }
             } finally {
-              if (_didIteratorError14) {
-                throw _iteratorError14;
+              if (_didIteratorError15) {
+                throw _iteratorError15;
               }
             }
           }
@@ -3373,26 +3421,26 @@ squel.flavours['mssql'] = function (_squel) {
       }
     }]);
 
-    return _class41;
+    return _class42;
   }(cls.Block); // SELECT query builder.
 
 
   cls.Select =
   /*#__PURE__*/
   function (_cls$QueryBuilder5) {
-    _inherits(_class42, _cls$QueryBuilder5);
+    _inherits(_class43, _cls$QueryBuilder5);
 
-    function _class42(options) {
+    function _class43(options) {
       var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-      _classCallCheck(this, _class42);
+      _classCallCheck(this, _class43);
 
       var limitOffsetTopBlock = new cls.MssqlLimitOffsetTopBlock(options);
       blocks = blocks || [new cls.StringBlock(options, 'SELECT'), new cls.DistinctBlock(options), limitOffsetTopBlock.TOP(), new cls.GetFieldBlock(options), new cls.FromTableBlock(options), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.GroupByBlock(options), new cls.OrderByBlock(options), limitOffsetTopBlock.OFFSET(), limitOffsetTopBlock.LIMIT(), new cls.SetOpBlock(options)];
-      return _possibleConstructorReturn(this, _getPrototypeOf(_class42).call(this, options, blocks));
+      return _possibleConstructorReturn(this, _getPrototypeOf(_class43).call(this, options, blocks));
     }
 
-    return _class42;
+    return _class43;
   }(cls.QueryBuilder); // Order By in update requires subquery
   // UPDATE query builder.
 
@@ -3400,18 +3448,18 @@ squel.flavours['mssql'] = function (_squel) {
   cls.Update =
   /*#__PURE__*/
   function (_cls$QueryBuilder6) {
-    _inherits(_class43, _cls$QueryBuilder6);
+    _inherits(_class44, _cls$QueryBuilder6);
 
-    function _class43(options) {
+    function _class44(options) {
       var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-      _classCallCheck(this, _class43);
+      _classCallCheck(this, _class44);
 
       blocks = blocks || [new cls.StringBlock(options, 'UPDATE'), new cls.MssqlUpdateTopBlock(options), new cls.UpdateTableBlock(options), new cls.SetFieldBlock(options), new cls.MssqlUpdateDeleteOutputBlock(options), new cls.WhereBlock(options)];
-      return _possibleConstructorReturn(this, _getPrototypeOf(_class43).call(this, options, blocks));
+      return _possibleConstructorReturn(this, _getPrototypeOf(_class44).call(this, options, blocks));
     }
 
-    return _class43;
+    return _class44;
   }(cls.QueryBuilder); // Order By and Limit/Top in delete requires subquery
   // DELETE query builder.
 
@@ -3419,40 +3467,40 @@ squel.flavours['mssql'] = function (_squel) {
   cls.Delete =
   /*#__PURE__*/
   function (_cls$QueryBuilder7) {
-    _inherits(_class44, _cls$QueryBuilder7);
-
-    function _class44(options) {
-      var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-      _classCallCheck(this, _class44);
-
-      blocks = blocks || [new cls.StringBlock(options, 'DELETE'), new cls.TargetTableBlock(options), new cls.FromTableBlock(_extend({}, options, {
-        singleTable: true
-      })), new cls.JoinBlock(options), new cls.MssqlUpdateDeleteOutputBlock(_extend({}, options, {
-        forDelete: true
-      })), new cls.WhereBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options)];
-      return _possibleConstructorReturn(this, _getPrototypeOf(_class44).call(this, options, blocks));
-    }
-
-    return _class44;
-  }(cls.QueryBuilder); // An INSERT query builder.
-
-
-  cls.Insert =
-  /*#__PURE__*/
-  function (_cls$QueryBuilder8) {
-    _inherits(_class45, _cls$QueryBuilder8);
+    _inherits(_class45, _cls$QueryBuilder7);
 
     function _class45(options) {
       var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
       _classCallCheck(this, _class45);
 
-      blocks = blocks || [new cls.StringBlock(options, 'INSERT'), new cls.IntoTableBlock(options), new cls.MssqlInsertFieldValueBlock(options), new cls.InsertFieldsFromQueryBlock(options)];
+      blocks = blocks || [new cls.StringBlock(options, 'DELETE'), new cls.TargetTableBlock(options), new cls.FromTableBlock(_extend({}, options, {
+        singleTable: true
+      })), new cls.JoinBlock(options), new cls.MssqlUpdateDeleteOutputBlock(_extend({}, options, {
+        forDelete: true
+      })), new cls.WhereBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options)];
       return _possibleConstructorReturn(this, _getPrototypeOf(_class45).call(this, options, blocks));
     }
 
     return _class45;
+  }(cls.QueryBuilder); // An INSERT query builder.
+
+
+  cls.Insert =
+  /*#__PURE__*/
+  function (_cls$QueryBuilder8) {
+    _inherits(_class46, _cls$QueryBuilder8);
+
+    function _class46(options) {
+      var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      _classCallCheck(this, _class46);
+
+      blocks = blocks || [new cls.StringBlock(options, 'INSERT'), new cls.IntoTableBlock(options), new cls.MssqlInsertFieldValueBlock(options), new cls.InsertFieldsFromQueryBlock(options)];
+      return _possibleConstructorReturn(this, _getPrototypeOf(_class46).call(this, options, blocks));
+    }
+
+    return _class46;
   }(cls.QueryBuilder);
 }; // This file contains additional Squel commands for use with MySQL
 
@@ -3463,15 +3511,15 @@ squel.flavours['mysql'] = function (_squel) {
   cls.MysqlOnDuplicateKeyUpdateBlock =
   /*#__PURE__*/
   function (_cls$AbstractSetField3) {
-    _inherits(_class46, _cls$AbstractSetField3);
+    _inherits(_class47, _cls$AbstractSetField3);
 
-    function _class46() {
-      _classCallCheck(this, _class46);
+    function _class47() {
+      _classCallCheck(this, _class47);
 
-      return _possibleConstructorReturn(this, _getPrototypeOf(_class46).apply(this, arguments));
+      return _possibleConstructorReturn(this, _getPrototypeOf(_class47).apply(this, arguments));
     }
 
-    _createClass(_class46, [{
+    _createClass(_class47, [{
       key: "onDupUpdate",
       value: function onDupUpdate(field, value, options) {
         this._set(field, value, options);
@@ -3511,43 +3559,43 @@ squel.flavours['mysql'] = function (_squel) {
       }
     }]);
 
-    return _class46;
+    return _class47;
   }(cls.AbstractSetFieldBlock); // INSERT query builder.
 
 
   cls.Insert =
   /*#__PURE__*/
   function (_cls$QueryBuilder9) {
-    _inherits(_class47, _cls$QueryBuilder9);
-
-    function _class47(options) {
-      var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-      _classCallCheck(this, _class47);
-
-      blocks = blocks || [new cls.StringBlock(options, 'INSERT'), new cls.IntoTableBlock(options), new cls.InsertFieldValueBlock(options), new cls.InsertFieldsFromQueryBlock(options), new cls.MysqlOnDuplicateKeyUpdateBlock(options)];
-      return _possibleConstructorReturn(this, _getPrototypeOf(_class47).call(this, options, blocks));
-    }
-
-    return _class47;
-  }(cls.QueryBuilder); // REPLACE query builder.
-
-
-  cls.Replace =
-  /*#__PURE__*/
-  function (_cls$QueryBuilder10) {
-    _inherits(_class48, _cls$QueryBuilder10);
+    _inherits(_class48, _cls$QueryBuilder9);
 
     function _class48(options) {
       var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
       _classCallCheck(this, _class48);
 
-      blocks = blocks || [new cls.StringBlock(options, 'REPLACE'), new cls.IntoTableBlock(options), new cls.InsertFieldValueBlock(options), new cls.InsertFieldsFromQueryBlock(options)];
+      blocks = blocks || [new cls.StringBlock(options, 'INSERT'), new cls.IntoTableBlock(options), new cls.InsertFieldValueBlock(options), new cls.InsertFieldsFromQueryBlock(options), new cls.MysqlOnDuplicateKeyUpdateBlock(options)];
       return _possibleConstructorReturn(this, _getPrototypeOf(_class48).call(this, options, blocks));
     }
 
     return _class48;
+  }(cls.QueryBuilder); // REPLACE query builder.
+
+
+  cls.Replace =
+  /*#__PURE__*/
+  function (_cls$QueryBuilder10) {
+    _inherits(_class49, _cls$QueryBuilder10);
+
+    function _class49(options) {
+      var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      _classCallCheck(this, _class49);
+
+      blocks = blocks || [new cls.StringBlock(options, 'REPLACE'), new cls.IntoTableBlock(options), new cls.InsertFieldValueBlock(options), new cls.InsertFieldsFromQueryBlock(options)];
+      return _possibleConstructorReturn(this, _getPrototypeOf(_class49).call(this, options, blocks));
+    }
+
+    return _class49;
   }(cls.QueryBuilder);
 
   _squel.replace = function (options, blocks) {
@@ -3568,15 +3616,15 @@ squel.flavours['postgres'] = function (_squel) {
   cls.PostgresOnConflictKeyUpdateBlock =
   /*#__PURE__*/
   function (_cls$AbstractSetField4) {
-    _inherits(_class49, _cls$AbstractSetField4);
+    _inherits(_class50, _cls$AbstractSetField4);
 
-    function _class49() {
-      _classCallCheck(this, _class49);
+    function _class50() {
+      _classCallCheck(this, _class50);
 
-      return _possibleConstructorReturn(this, _getPrototypeOf(_class49).apply(this, arguments));
+      return _possibleConstructorReturn(this, _getPrototypeOf(_class50).apply(this, arguments));
     }
 
-    _createClass(_class49, [{
+    _createClass(_class50, [{
       key: "onConflict",
       value: function onConflict(conflictFields, fields) {
         var _this30 = this;
@@ -3643,26 +3691,26 @@ squel.flavours['postgres'] = function (_squel) {
       }
     }]);
 
-    return _class49;
+    return _class50;
   }(cls.AbstractSetFieldBlock); // RETURNING
 
 
   cls.ReturningBlock =
   /*#__PURE__*/
-  function (_cls$Block18) {
-    _inherits(_class50, _cls$Block18);
+  function (_cls$Block19) {
+    _inherits(_class51, _cls$Block19);
 
-    function _class50(options) {
+    function _class51(options) {
       var _this31;
 
-      _classCallCheck(this, _class50);
+      _classCallCheck(this, _class51);
 
-      _this31 = _possibleConstructorReturn(this, _getPrototypeOf(_class50).call(this, options));
+      _this31 = _possibleConstructorReturn(this, _getPrototypeOf(_class51).call(this, options));
       _this31._fields = [];
       return _this31;
     }
 
-    _createClass(_class50, [{
+    _createClass(_class51, [{
       key: "returning",
       value: function returning(field) {
         var alias = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -3692,13 +3740,13 @@ squel.flavours['postgres'] = function (_squel) {
             buildParameterized = options.buildParameterized;
         var totalStr = '',
             totalValues = [];
-        var _iteratorNormalCompletion15 = true;
-        var _didIteratorError15 = false;
-        var _iteratorError15 = undefined;
+        var _iteratorNormalCompletion16 = true;
+        var _didIteratorError16 = false;
+        var _iteratorError16 = undefined;
 
         try {
-          for (var _iterator15 = this._fields[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
-            var field = _step15.value;
+          for (var _iterator16 = this._fields[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
+            var field = _step16.value;
             totalStr = _pad(totalStr, ", ");
             var name = field.name,
                 alias = field.alias,
@@ -3723,81 +3771,6 @@ squel.flavours['postgres'] = function (_squel) {
             }
           }
         } catch (err) {
-          _didIteratorError15 = true;
-          _iteratorError15 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion15 && _iterator15["return"] != null) {
-              _iterator15["return"]();
-            }
-          } finally {
-            if (_didIteratorError15) {
-              throw _iteratorError15;
-            }
-          }
-        }
-
-        return {
-          text: totalStr.length > 0 ? "RETURNING ".concat(totalStr) : '',
-          values: totalValues
-        };
-      }
-    }]);
-
-    return _class50;
-  }(cls.Block); // WITH
-
-
-  cls.WithBlock =
-  /*#__PURE__*/
-  function (_cls$Block19) {
-    _inherits(_class51, _cls$Block19);
-
-    function _class51(options) {
-      var _this32;
-
-      _classCallCheck(this, _class51);
-
-      _this32 = _possibleConstructorReturn(this, _getPrototypeOf(_class51).call(this, options));
-      _this32._tables = [];
-      return _this32;
-    }
-
-    _createClass(_class51, [{
-      key: "with",
-      value: function _with(alias, table) {
-        this._tables.push({
-          alias: alias,
-          table: table
-        });
-      }
-    }, {
-      key: "_toParamString",
-      value: function _toParamString() {
-        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-        var parts = [];
-        var values = [];
-        var _iteratorNormalCompletion16 = true;
-        var _didIteratorError16 = false;
-        var _iteratorError16 = undefined;
-
-        try {
-          for (var _iterator16 = this._tables[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
-            var _step16$value = _step16.value,
-                alias = _step16$value.alias,
-                table = _step16$value.table;
-
-            var ret = table._toParamString({
-              buildParameterized: options.buildParameterized,
-              nested: true
-            });
-
-            parts.push("".concat(alias, " AS ").concat(ret.text));
-            ret.values.forEach(function (value) {
-              return values.push(value);
-            });
-          }
-        } catch (err) {
           _didIteratorError16 = true;
           _iteratorError16 = err;
         } finally {
@@ -3813,28 +3786,103 @@ squel.flavours['postgres'] = function (_squel) {
         }
 
         return {
+          text: totalStr.length > 0 ? "RETURNING ".concat(totalStr) : '',
+          values: totalValues
+        };
+      }
+    }]);
+
+    return _class51;
+  }(cls.Block); // WITH
+
+
+  cls.WithBlock =
+  /*#__PURE__*/
+  function (_cls$Block20) {
+    _inherits(_class52, _cls$Block20);
+
+    function _class52(options) {
+      var _this32;
+
+      _classCallCheck(this, _class52);
+
+      _this32 = _possibleConstructorReturn(this, _getPrototypeOf(_class52).call(this, options));
+      _this32._tables = [];
+      return _this32;
+    }
+
+    _createClass(_class52, [{
+      key: "with",
+      value: function _with(alias, table) {
+        this._tables.push({
+          alias: alias,
+          table: table
+        });
+      }
+    }, {
+      key: "_toParamString",
+      value: function _toParamString() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        var parts = [];
+        var values = [];
+        var _iteratorNormalCompletion17 = true;
+        var _didIteratorError17 = false;
+        var _iteratorError17 = undefined;
+
+        try {
+          for (var _iterator17 = this._tables[Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
+            var _step17$value = _step17.value,
+                alias = _step17$value.alias,
+                table = _step17$value.table;
+
+            var ret = table._toParamString({
+              buildParameterized: options.buildParameterized,
+              nested: true
+            });
+
+            parts.push("".concat(alias, " AS ").concat(ret.text));
+            ret.values.forEach(function (value) {
+              return values.push(value);
+            });
+          }
+        } catch (err) {
+          _didIteratorError17 = true;
+          _iteratorError17 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion17 && _iterator17["return"] != null) {
+              _iterator17["return"]();
+            }
+          } finally {
+            if (_didIteratorError17) {
+              throw _iteratorError17;
+            }
+          }
+        }
+
+        return {
           text: parts.length ? "WITH ".concat(parts.join(', ')) : '',
           values: values
         };
       }
     }]);
 
-    return _class51;
+    return _class52;
   }(cls.Block); // WITH VALUES
 
 
   cls.WithValuesBlock =
   /*#__PURE__*/
   function (_cls$AbstractSetField5) {
-    _inherits(_class52, _cls$AbstractSetField5);
+    _inherits(_class53, _cls$AbstractSetField5);
 
-    function _class52() {
-      _classCallCheck(this, _class52);
+    function _class53() {
+      _classCallCheck(this, _class53);
 
-      return _possibleConstructorReturn(this, _getPrototypeOf(_class52).apply(this, arguments));
+      return _possibleConstructorReturn(this, _getPrototypeOf(_class53).apply(this, arguments));
     }
 
-    _createClass(_class52, [{
+    _createClass(_class53, [{
       key: "withValues",
       value: function withValues(alias, values) {
         this._alias = alias;
@@ -3880,26 +3928,26 @@ squel.flavours['postgres'] = function (_squel) {
       }
     }]);
 
-    return _class52;
+    return _class53;
   }(cls.AbstractSetFieldBlock); // DISTINCT [ON]
 
 
   cls.DistinctOnBlock =
   /*#__PURE__*/
-  function (_cls$Block20) {
-    _inherits(_class53, _cls$Block20);
+  function (_cls$Block21) {
+    _inherits(_class54, _cls$Block21);
 
-    function _class53(options) {
+    function _class54(options) {
       var _this34;
 
-      _classCallCheck(this, _class53);
+      _classCallCheck(this, _class54);
 
-      _this34 = _possibleConstructorReturn(this, _getPrototypeOf(_class53).call(this, options));
+      _this34 = _possibleConstructorReturn(this, _getPrototypeOf(_class54).call(this, options));
       _this34._distinctFields = [];
       return _this34;
     }
 
-    _createClass(_class53, [{
+    _createClass(_class54, [{
       key: "distinct",
       value: function distinct() {
         var _this35 = this;
@@ -3934,81 +3982,81 @@ squel.flavours['postgres'] = function (_squel) {
       }
     }]);
 
-    return _class53;
+    return _class54;
   }(cls.Block); // SELECT query builder.
 
 
   cls.Select =
   /*#__PURE__*/
   function (_cls$QueryBuilder11) {
-    _inherits(_class54, _cls$QueryBuilder11);
-
-    function _class54(options) {
-      var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-      _classCallCheck(this, _class54);
-
-      blocks = blocks || [new cls.WithBlock(options), new cls.WithValuesBlock(options), new cls.StringBlock(options, 'SELECT'), new cls.FunctionBlock(options), new cls.DistinctOnBlock(options), new cls.GetFieldBlock(options), new cls.FromTableBlock(options), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.GroupByBlock(options), new cls.HavingBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options), new cls.OffsetBlock(options), new cls.SetOpBlock(options)];
-      return _possibleConstructorReturn(this, _getPrototypeOf(_class54).call(this, options, blocks));
-    }
-
-    return _class54;
-  }(cls.QueryBuilder); // INSERT query builder
-
-
-  cls.Insert =
-  /*#__PURE__*/
-  function (_cls$QueryBuilder12) {
-    _inherits(_class55, _cls$QueryBuilder12);
+    _inherits(_class55, _cls$QueryBuilder11);
 
     function _class55(options) {
       var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
       _classCallCheck(this, _class55);
 
-      blocks = blocks || [new cls.WithBlock(options), new cls.StringBlock(options, 'INSERT'), new cls.IntoTableBlock(options), new cls.InsertFieldValueBlock(options), new cls.InsertFieldsFromQueryBlock(options), new cls.PostgresOnConflictKeyUpdateBlock(options), new cls.ReturningBlock(options)];
+      blocks = blocks || [new cls.WithBlock(options), new cls.WithValuesBlock(options), new cls.StringBlock(options, 'SELECT'), new cls.FunctionBlock(options), new cls.DistinctOnBlock(options), new cls.GetFieldBlock(options), new cls.FromTableBlock(options), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.GroupByBlock(options), new cls.HavingBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options), new cls.OffsetBlock(options), new cls.SetOpBlock(options)];
       return _possibleConstructorReturn(this, _getPrototypeOf(_class55).call(this, options, blocks));
     }
 
     return _class55;
-  }(cls.QueryBuilder); // UPDATE query builder
+  }(cls.QueryBuilder); // INSERT query builder
 
 
-  cls.Update =
+  cls.Insert =
   /*#__PURE__*/
-  function (_cls$QueryBuilder13) {
-    _inherits(_class56, _cls$QueryBuilder13);
+  function (_cls$QueryBuilder12) {
+    _inherits(_class56, _cls$QueryBuilder12);
 
     function _class56(options) {
       var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
       _classCallCheck(this, _class56);
 
-      blocks = blocks || [new cls.WithBlock(options), new cls.WithValuesBlock(options), new cls.StringBlock(options, 'UPDATE'), new cls.UpdateTableBlock(options), new cls.SetFieldBlock(options), new cls.FromTableBlock(options), new cls.WhereBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options), new cls.ReturningBlock(options)];
+      blocks = blocks || [new cls.WithBlock(options), new cls.StringBlock(options, 'INSERT'), new cls.IntoTableBlock(options), new cls.InsertFieldValueBlock(options), new cls.InsertFieldsFromQueryBlock(options), new cls.PostgresOnConflictKeyUpdateBlock(options), new cls.ReturningBlock(options)];
       return _possibleConstructorReturn(this, _getPrototypeOf(_class56).call(this, options, blocks));
     }
 
     return _class56;
-  }(cls.QueryBuilder); // DELETE query builder
+  }(cls.QueryBuilder); // UPDATE query builder
 
 
-  cls.Delete =
+  cls.Update =
   /*#__PURE__*/
-  function (_cls$QueryBuilder14) {
-    _inherits(_class57, _cls$QueryBuilder14);
+  function (_cls$QueryBuilder13) {
+    _inherits(_class57, _cls$QueryBuilder13);
 
     function _class57(options) {
       var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
       _classCallCheck(this, _class57);
 
-      blocks = blocks || [new cls.WithBlock(options), new cls.StringBlock(options, 'DELETE'), new cls.TargetTableBlock(options), new cls.FromTableBlock(_extend({}, options, {
-        singleTable: true
-      })), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options), new cls.ReturningBlock(options)];
+      blocks = blocks || [new cls.WithBlock(options), new cls.WithValuesBlock(options), new cls.StringBlock(options, 'UPDATE'), new cls.UpdateTableBlock(options), new cls.SetFieldBlock(options), new cls.FromTableBlock(options), new cls.WhereBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options), new cls.ReturningBlock(options)];
       return _possibleConstructorReturn(this, _getPrototypeOf(_class57).call(this, options, blocks));
     }
 
     return _class57;
+  }(cls.QueryBuilder); // DELETE query builder
+
+
+  cls.Delete =
+  /*#__PURE__*/
+  function (_cls$QueryBuilder14) {
+    _inherits(_class58, _cls$QueryBuilder14);
+
+    function _class58(options) {
+      var blocks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      _classCallCheck(this, _class58);
+
+      blocks = blocks || [new cls.WithBlock(options), new cls.StringBlock(options, 'DELETE'), new cls.TargetTableBlock(options), new cls.FromTableBlock(_extend({}, options, {
+        singleTable: true
+      })), new cls.JoinBlock(options), new cls.WhereBlock(options), new cls.OrderByBlock(options), new cls.LimitBlock(options), new cls.ReturningBlock(options)];
+      return _possibleConstructorReturn(this, _getPrototypeOf(_class58).call(this, options, blocks));
+    }
+
+    return _class58;
   }(cls.QueryBuilder);
 };
 return squel;

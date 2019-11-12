@@ -1,5 +1,8 @@
 # Changelog for [squel](https://github.com/hiddentao/squel)
 
+## 12 Nov 2019 (5.14.0)
+* Added `FOR UPDATE` locking support to `SELECT` statements
+
 ## 2 Mar 2019 (5.12.3)
 * Update all dependencies, fix all reported npm audit issues.
 * Use the double quote character to quote PostgreSQL names [KMahoney](https://github.com/KMahoney)
