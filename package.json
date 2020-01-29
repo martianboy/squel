@@ -16,7 +16,7 @@
     "@types/gulp": "^4.0.6",
     "@types/knex": "^0.16.1",
     "@types/lodash": "^4.14.149",
-    "@types/mocha": "^5.2.7",
+    "@types/mocha": "^7.0.0",
     "benchmark": "^2.1.4",
     "chai": "^4.2.0",
     "coffee-script": "^1.12.7",
