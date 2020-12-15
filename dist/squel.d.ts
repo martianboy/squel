@@ -1083,7 +1083,7 @@ declare namespace squel {
     Cloneable: {new(): Cloneable};
     BaseBuilder: BuilderConstructor<BaseBuilder>;
     Expression: BuilderConstructor<Expression>;
-    Case: {new(fieldName: string, options?: QueryBuilderOptions): Case};
+    Case: {new(fieldName?: string, options?: QueryBuilderOptions): Case};
     Block: BuilderConstructor<Block>;
     StringBlock: {new(options: QueryBuilderOptions | null, str: string): StringBlock};
     FunctionBlock: BuilderConstructor<FunctionBlock>;
@@ -1295,15 +1295,15 @@ declare namespace squel {
     insert(options: QueryBuilderOptions | null, blocks: Block[]): QueryBuilder;
 
     /**
-     * Create an INSERT query builder instance.
+     * Create an CASE expression query builder instance.
      *
      * @param name Name of field. Default is `null`.
      * @param options Options for configuring this query builder. Default is [[DefaultQueryBuilderOptions]].
      */
-    case(name: string, options?: QueryBuilderOptions): C;
+    case(name?: string, options?: QueryBuilderOptions): C;
 
     /**
-     * Create a custom INSERT query builder instance.
+     * Create a custom CASE expression query builder instance.
      *
      * @param name Name of field. Default is `null`.
      * @param options Options for configuring this query builder. Default is [[DefaultQueryBuilderOptions]].
